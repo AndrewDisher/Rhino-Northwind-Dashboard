@@ -1,0 +1,359 @@
+/* ----------------------------------- */
+/* ----- Styling for Main Header ----- */
+/* ----------------------------------- */
+
+.ui.ui.inverted.blue.menu, .ui.ui.inverted.menu .blue.active.item{
+  background: #0d2e4c;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ui.inverted.dashboard-title{
+  font-family: papyrus;
+}
+
+span.ui.menu.dashboard-title.thin.inverted.blue{
+  background: #0d2e4c;
+}
+
+
+/* ------------------------------- */
+/* ----- Styling for Sidebar ----- */
+/* ------------------------------- */
+
+/* Styling for active menu item*/
+.ui.vertical.menu .active.item{
+  color: #FFFFFF;
+  background: #0d2e4c;
+}
+
+/* Styling for active menu item when hovered */
+.ui.menu .active.item:hover, 
+.ui.vertical.menu .active.item:hover{
+  color: #FFFFFF !important;
+  background: #0d2e4c !important;
+  opacity: 1;
+}
+
+/* Styling for sidebar menu items when hovered, but NOT for conditional panels */
+.ui.sidebar.menu > a.item:hover{
+  color: #FFFFFF !important;
+  background: #0d2e4c !important;
+  opacity: .8;
+}
+
+/* Styling for all menu items */
+.ui.menu > a.item{
+  color: #0d2e4c;
+}
+
+#author-links{
+  position: fixed;
+  display: flex;
+  vertical-align: center;
+  bottom: 0;
+  left: 5px;
+  width: 100%;
+}
+
+#github-link{
+  width: 6%;
+}
+
+#linkedIn-link{
+  width: 6%;
+}
+
+#Northwind-link{
+  width: 6%;
+}
+
+#author-website-link{
+  padding-left: 1px;
+  width: 88%;
+}
+
+.author-img{
+  width: 100%;
+  font-size: 10;
+}
+
+.conditional-panels{
+  margin: 0 1em 0 1em;
+}
+
+/* ------------------------------------- */
+/* ----- Generic Box Label Styling ----- */
+/* ------------------------------------- */
+
+/* Styling for box label background */
+.ui.attached.label{
+  background: #0d2e4c;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: verdana;
+}
+
+/* Style for box label text */
+.ui.label{
+  color: #FFFFFF;
+}
+
+/* Style for title-span for box label container */
+.label-container{
+  align-items: end;
+  display: grid;
+  grid-template-areas:
+    "title-span  help-icon";
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+}
+
+.title-span{
+  grid-area: title-span;
+}
+
+.help-icon>.info.circle.icon{
+  grid-area: help-icon;
+  color: white;
+  background: #0d2e4c;
+  font-size: 14px;
+}
+
+.help-icon>.info.circle.icon:hover{
+  grid-area: help-icon;
+  color: white;
+  background: #0d2e4c;
+  font-size: 16px;
+}
+
+.ui.help-icon.button.shiny-bound-input{
+  padding: 0 0 0 0;
+}
+
+.ui.button{
+  border-radius: 1em;
+}
+
+.ui.button.custom:hover{
+  color: white;
+  background: #0d2e4c;
+  border-width: 4px;
+  border-color: white;
+}
+
+.ui.button:not(.icon)>.icon:not(.button):not(.dropdown), .ui.button:not(.icon)>.icons:not(.button):not(.dropdown){
+  margin: 0;
+}
+
+
+/* ------------------------------- */
+/* ----- Metric Span Styling ----- */
+/* ------------------------------- */
+
+.value-box-metric{
+  align-items: end;
+  column-gap: rem(30px);
+  display: grid;
+  gap: 10px;
+  grid-template-areas:
+    "metric  metric-icon";
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+  height: 35px;
+}
+  
+.metric{
+  font-size: 24px;
+  font-weight: bold;
+  grid-area: metric;
+}
+
+.value-icon {
+  color: #b3b3b3;
+  font-size: 24px;
+  grid-area: metric-icon;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* -------------------------------------- */
+/* ----- Employee Info Span Styling ----- */
+/* -------------------------------------- */
+
+
+.info-container{
+  align-items: end;
+  display: grid;
+  grid-template-areas:
+    "attribute-span  info-span";
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+}
+
+.attribute-span{
+  grid-area: attribute-span;
+  font-weight: bold;
+  padding-left: 3px;
+  padding-bottom: 7px;
+}
+
+.info-span{
+  font-weight: bold;
+  grid-area: info-span;
+  padding-right: 3px;
+  padding-bottom: 7px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* ------------------------------------- */
+/* ----- Employee Portrait Styling ----- */
+/* ------------------------------------- */
+
+.shiny-image-output.html-fill-item.shiny-bound-output{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.shiny-image-output.html-fill-item.shiny-bound-output img{
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: auto;
+}
+
+.ui.info-button.button.shiny-bound-input{
+  background: white;
+  color: white;
+}
+
+
+/* ------------------------------------------------ */
+/* ----- Employee Name and Info Modal Styling ----- */
+/* ------------------------------------------------ */
+
+.ui.info-button.button.shiny-bound-input{
+  padding: 0 2px 8px 0;
+}
+
+.modal-container{
+  align-items: end;
+  display: grid;
+  grid-template-areas:
+    "name-span  info-button";
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+}
+
+.info.circle.icon{
+  color: #0d2e4c;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.info.circle.icon:hover{
+  display: flex;
+  color: #0d2e4c;
+  font-size: 18px;
+}
+
+.name-span{
+  grid-area: name-span;
+  font-weight: bold;
+  padding: 7px;
+  align-items: center;
+  display: flex;
+  text-align: center;
+}
+
+.ui.button.positive{
+  background: #0d2e4c;
+  color: white;
+  border: 1px solid #0d2e4c;
+  border-radius: .25em;
+}
+
+.ui.button.positive:hover{
+  background: #0d2e4c;
+  color: white;
+  opacity: .8;
+  border: 1px solid #0d2e4c;
+}
+
+.ui.modal {
+  width: 40% !important;
+}
+
+.ui.modal>.actions {
+  background: white;
+}
+
+.ui.modal>.header {
+  color: white;
+  background: #0d2e4c;
+  text-align: left;
+}
+
+.ui.modal>.content {
+  text-align: justify;
+}
+
+
+/* -------------------------------- */ 
+/* ----- DT Datatable Styling ----- */
+/* -------------------------------- */
+
+div.dataTables_processing>div:last-child>div{
+  opacity: 0;
+}
+
+table.dataTable.stripe>tbody>tr.odd.selected>*, table.dataTable.display>tbody>tr.odd.selected>*{
+  box-shadow: inset 0 0 0 9999px #13426d !important;
+}
+
+table.dataTable tbody tr.selected>*{
+  box-shadow: inset 0 0 0 9999px #13426d !important;
+  color: white !important;
+}
+
+
+/* --------------------------------- */
+/* ----- Generic Modal Styling ----- */
+/* --------------------------------- */
+
+.modal-title{
+  font-weight: bold;
+  margin: 0 0 0 2em;
+  font-size: 1.42857143rem;
+}
+
+.modal-description-header{
+  font-weight: bold;
+  font-size: 1.2em;
+  margin: 0 0 .7em 2.50em;
+}
+
+.modal-paragraph{
+  font-size: 1em;
+  margin: 0 3em 0 3em;
+  color: #525252	;
+}
+
+.modal-divider{
+  margin: 1em 3em 1em 3em;
+}
+
+.ui.positive.button:focus, .ui.positive.buttons .button:focus{
+  background: #0d2e4c;
+  color: white;
+  border: 1px solid #0d2e4c;
+  border-radius: .25em;
+}

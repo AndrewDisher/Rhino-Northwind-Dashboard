@@ -1,4 +1,5 @@
 if (file.exists("renv")) {
+  Sys.setenv(RENV_DOWNLOAD_FILE_METHOD = "libcurl")
   source("renv/activate.R")
 } else {
   # The `renv` directory is automatically skipped when deploying with rsconnect.

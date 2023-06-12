@@ -33,22 +33,6 @@
         "promises"
       ]
     },
-    "KernSmooth": {
-      "Package": "KernSmooth",
-      "Version": "2.23-20",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "8dcfa99b14c296bc9f1fd64d52fd3ce7",
-      "Requirements": []
-    },
-    "MASS": {
-      "Package": "MASS",
-      "Version": "7.3-58.4",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "a3142b2a022b8174ca675bc8b80cdc4e",
-      "Requirements": []
-    },
     "R.cache": {
       "Package": "R.cache",
       "Version": "0.16.0",
@@ -107,18 +91,6 @@
       "Hash": "45f0398006e83a5b10b72a90663d8d8c",
       "Requirements": []
     },
-    "RSQL": {
-      "Package": "RSQL",
-      "Version": "0.2.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "0f58c8d2ad3151eb3e9b72e1b186f52c",
-      "Requirements": [
-        "DBI",
-        "R6",
-        "lgr"
-      ]
-    },
     "RSQLite": {
       "Package": "RSQLite",
       "Version": "2.3.1",
@@ -142,16 +114,6 @@
       "Repository": "CRAN",
       "Hash": "e749cae40fa9ef469b6050959517453c",
       "Requirements": []
-    },
-    "askpass": {
-      "Package": "askpass",
-      "Version": "1.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "e8a22846fff485f0be3770c2da758713",
-      "Requirements": [
-        "sys"
-      ]
     },
     "backports": {
       "Package": "backports",
@@ -282,28 +244,6 @@
       "Hash": "ca9c113196136f4a9ca9ce6079c2c99e",
       "Requirements": [
         "backports"
-      ]
-    },
-    "class": {
-      "Package": "class",
-      "Version": "7.3-21",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "8ae0d4328e2eb3a582dfd5391a3663b7",
-      "Requirements": [
-        "MASS"
-      ]
-    },
-    "classInt": {
-      "Package": "classInt",
-      "Version": "0.4-9",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "bee651a42a89633eccb36dca9d9ab413",
-      "Requirements": [
-        "KernSmooth",
-        "class",
-        "e1071"
       ]
     },
     "cli": {
@@ -465,17 +405,6 @@
         "vctrs"
       ]
     },
-    "e1071": {
-      "Package": "e1071",
-      "Version": "1.7-13",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "1046cb48d06cb40c2900d8878f03a0fe",
-      "Requirements": [
-        "class",
-        "proxy"
-      ]
-    },
     "echarts4r": {
       "Package": "echarts4r",
       "Version": "0.4.4",
@@ -583,19 +512,6 @@
         "xfun"
       ]
     },
-    "hms": {
-      "Package": "hms",
-      "Version": "1.1.3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "b59377caa7ed00fa41808342002138f9",
-      "Requirements": [
-        "lifecycle",
-        "pkgconfig",
-        "rlang",
-        "vctrs"
-      ]
-    },
     "htmltools": {
       "Package": "htmltools",
       "Version": "0.5.5",
@@ -635,20 +551,6 @@
         "Rcpp",
         "later",
         "promises"
-      ]
-    },
-    "httr": {
-      "Package": "httr",
-      "Version": "1.4.6",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "7e5e3cbd2a7bc07880c94e22348fb661",
-      "Requirements": [
-        "R6",
-        "curl",
-        "jsonlite",
-        "mime",
-        "openssl"
       ]
     },
     "jquerylib": {
@@ -701,14 +603,6 @@
         "rlang"
       ]
     },
-    "lattice": {
-      "Package": "lattice",
-      "Version": "0.21-8",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "0b8a6d63c8770f02a8b5635f3c431e6b",
-      "Requirements": []
-    },
     "lazyeval": {
       "Package": "lazyeval",
       "Version": "0.2.2",
@@ -716,16 +610,6 @@
       "Repository": "CRAN",
       "Hash": "d908914ae53b04d4c0c0fd72ecc35370",
       "Requirements": []
-    },
-    "lgr": {
-      "Package": "lgr",
-      "Version": "0.4.4",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "a6bc51765d7e9eeb2b225a11805527aa",
-      "Requirements": [
-        "R6"
-      ]
     },
     "lifecycle": {
       "Package": "lifecycle",
@@ -827,31 +711,6 @@
         "colorspace"
       ]
     },
-    "odbc": {
-      "Package": "odbc",
-      "Version": "1.3.4",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "dbbc00be3bd1e9808568a9bb686da239",
-      "Requirements": [
-        "DBI",
-        "Rcpp",
-        "bit64",
-        "blob",
-        "hms",
-        "rlang"
-      ]
-    },
-    "openssl": {
-      "Package": "openssl",
-      "Version": "2.0.6",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "0f7cd2962e3044bb940cca4f4b5cecbe",
-      "Requirements": [
-        "askpass"
-      ]
-    },
     "pillar": {
       "Package": "pillar",
       "Version": "1.9.0",
@@ -933,14 +792,6 @@
         "magrittr",
         "rlang"
       ]
-    },
-    "proxy": {
-      "Package": "proxy",
-      "Version": "0.4-27",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "e0ef355c12942cf7a6b91a6cfaea8b3e",
-      "Requirements": []
     },
     "ps": {
       "Package": "ps",
@@ -1061,20 +912,6 @@
         "yaml"
       ]
     },
-    "rnaturalearth": {
-      "Package": "rnaturalearth",
-      "Version": "0.3.3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "86411a59f5fc9534d8ea0c270d70cfa5",
-      "Requirements": [
-        "httr",
-        "jsonlite",
-        "sf",
-        "sp",
-        "terra"
-      ]
-    },
     "rprojroot": {
       "Package": "rprojroot",
       "Version": "2.0.3",
@@ -1090,17 +927,6 @@
       "Repository": "CRAN",
       "Hash": "690bd2acc42a9166ce34845884459320",
       "Requirements": []
-    },
-    "s2": {
-      "Package": "s2",
-      "Version": "1.1.4",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "f1cbe03bb3346f8e817518ffa20f9f5a",
-      "Requirements": [
-        "Rcpp",
-        "wk"
-      ]
     },
     "sass": {
       "Package": "sass",
@@ -1145,21 +971,6 @@
         "htmltools",
         "shiny",
         "shiny.semantic"
-      ]
-    },
-    "sf": {
-      "Package": "sf",
-      "Version": "1.0-13",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "8fb4839843abc03528ff9f86424d6acd",
-      "Requirements": [
-        "DBI",
-        "Rcpp",
-        "classInt",
-        "magrittr",
-        "s2",
-        "units"
       ]
     },
     "shiny": {
@@ -1270,16 +1081,6 @@
       "Hash": "5f5a7629f956619d519205ec475fe647",
       "Requirements": []
     },
-    "sp": {
-      "Package": "sp",
-      "Version": "1.6-1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "ca27b2643e3593b7688244d035f2cd92",
-      "Requirements": [
-        "lattice"
-      ]
-    },
     "stringi": {
       "Package": "stringi",
       "Version": "1.7.12",
@@ -1319,24 +1120,6 @@
         "rprojroot",
         "vctrs",
         "withr"
-      ]
-    },
-    "sys": {
-      "Package": "sys",
-      "Version": "3.4.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "3a1be13d68d47a8cd0bfd74739ca1555",
-      "Requirements": []
-    },
-    "terra": {
-      "Package": "terra",
-      "Version": "1.7-29",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "89c24bf35c961e047df79dde2eb69224",
-      "Requirements": [
-        "Rcpp"
       ]
     },
     "testthat": {
@@ -1438,16 +1221,6 @@
         "xfun"
       ]
     },
-    "units": {
-      "Package": "units",
-      "Version": "0.8-2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "422376fe53419adcde4710d43acbcdd0",
-      "Requirements": [
-        "Rcpp"
-      ]
-    },
     "utf8": {
       "Package": "utf8",
       "Version": "1.2.3",
@@ -1499,14 +1272,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "c0e49a9760983e81e55cdd9be92e7182",
-      "Requirements": []
-    },
-    "wk": {
-      "Package": "wk",
-      "Version": "0.7.3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "68a7ab6ec1afb5f076172b983c069313",
       "Requirements": []
     },
     "xfun": {

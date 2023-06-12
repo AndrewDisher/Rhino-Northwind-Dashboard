@@ -24,6 +24,9 @@ box::use(
 # -------------------------------- UI Function ----------------------------
 # -------------------------------------------------------------------------
 
+# Set the options for loading `shinycssloaders` spinners
+options(spinner.color = constants$colors$primary, spinner.color.background = "#ffffff", spinner.size = .5)
+
 #' @export
 ui <- function(id) {
   ns <- NS(id)
@@ -148,12 +151,16 @@ server <- function(id) {
     # -------------------------------------------
     # ----- UI Components and Their Updates -----
     # -------------------------------------------
+    
+    # Server rendering of monthSelection input UI
     output$monthSelection <- renderUI({
       selectInput(inputId = session$ns("monthSelection"),
                   label = h5("Select a Month", align = 'center'),
                   choices = utilities$get_month_choices(data = revenue_data(), year = "2018"),
                   selected = 'All Months')
     })
+    
+    # Observe event to update monthSelection UI
     observe({
       selected_year <- input$yearSelection
 
@@ -166,6 +173,7 @@ server <- function(id) {
     # ----------------------------------------------
     tab_sales_overview$init_server(id = "tab_sales_overview", 
                                    revenue_data = revenue_data, 
+                                   revenue_data_by_category = revenue_data_by_category,
                                    year_selection = year_selection, 
                                    month_selection = month_selection)
   })

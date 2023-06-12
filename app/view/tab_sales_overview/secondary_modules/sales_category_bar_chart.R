@@ -6,7 +6,7 @@ box::use(
   dplyr[`%>%`],
   echarts4r[echarts4rOutput, renderEcharts4r],
   semantic.dashboard[icon],
-  shiny[moduleServer, NS, reactive, tagList], 
+  shiny[moduleServer, NS, reactive, req, tagList],
   shinycssloaders[withSpinner]
 )
 
@@ -15,7 +15,7 @@ box::use(
 # -------------------------------------------------------------------------
 
 box::use(
-  app/logic[sales_time_series_logic, utilities]
+  app/logic[sales_category_bar_chart_logic, utilities]
 )
 
 # -------------------------------------------------------------------------
@@ -27,14 +27,14 @@ init_ui <- function(id) {
   ns <- NS(id)
   tagList(
     utilities$custom_box(width = 16, 
-        title = "REVENUE OVER TIME", 
+        title = "REVENUE BY PRODUCT CATEGORY", 
         ribbon = FALSE, 
         title_side = "top", 
         collapsible = FALSE, 
         
-        # Echarts time series
-        echarts4rOutput(ns("time_series"), height = "310px") %>% withSpinner(type = 8)
-        )
+        # Echarts bar chart
+        echarts4rOutput(ns("bar_chart"), height = "280px") %>% withSpinner(type = 8)
+    )
   )
 }
 
@@ -50,19 +50,19 @@ init_server <- function(id, data, selected_year, selected_month) {
       # -----------------------------------
       # ----- Reactive Data Filtering -----
       # -----------------------------------
-      time_series_data <- reactive({
-        sales_time_series_logic$filter_data(data = data(),
-                                            year = selected_year(),
-                                            month = selected_month())
-        })
+      bar_chart_data <- reactive({
+        sales_category_bar_chart_logic$filter_data(data = data(), 
+                                                   year = selected_year(), 
+                                                   month = selected_month())
+      })
       
-      # ----------------------------------------
-      # ----- Echarts4r Time Series Output -----
-      # ----------------------------------------
-      output$time_series <- renderEcharts4r({
-        sales_time_series_logic$build_time_series_chart(data = time_series_data(),
-                                                        year = selected_year(),
-                                                        month = selected_month())
+      # --------------------------------------
+      # ----- Echarts4r Bar Chart Output -----
+      # --------------------------------------
+      output$bar_chart <- renderEcharts4r({
+        sales_category_bar_chart_logic$build_bar_chart(data = bar_chart_data(), 
+                                                 year = selected_year(), 
+                                                 month = selected_month())
       })
     }
    )

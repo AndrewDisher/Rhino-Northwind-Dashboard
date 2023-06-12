@@ -12,8 +12,6 @@ library(shiny.semantic)
 
 # Packages for SQLite database querying 
 library(DBI)
-library(odbc)
-library(RSQL)
 library(RSQLite)
 
 # Packages for data viz, etc.

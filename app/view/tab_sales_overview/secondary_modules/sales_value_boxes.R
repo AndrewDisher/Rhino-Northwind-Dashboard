@@ -35,7 +35,8 @@ init_ui <- function(id) {
         collapsible = FALSE, 
         br(), 
         div(class = 'value-box-metric',
-            uiOutput(ns("revenue_summary")) %>% withSpinner(type = 8, size = .3, proxy.height = "35px", hide.ui = FALSE),
+            uiOutput(ns("revenue_summary")) %>% 
+              withSpinner(type = 8, size = .3, proxy.height = "35px", hide.ui = FALSE),
             span(class = 'value-icon', icon("money bill alternate outline"))),
         hr()), 
     
@@ -47,7 +48,8 @@ init_ui <- function(id) {
         collapsible = FALSE, 
         br(), 
         div(class = 'value-box-metric',
-            uiOutput(ns("freight_summary")) %>% withSpinner(type = 8, size = .3, proxy.height = "35px", hide.ui = FALSE),
+            uiOutput(ns("freight_summary")) %>% 
+              withSpinner(type = 8, size = .3, proxy.height = "35px", hide.ui = FALSE),
             span(class = 'value-icon', icon("money bill alternate"))),
         hr()), 
     
@@ -59,7 +61,8 @@ init_ui <- function(id) {
         collapsible = FALSE, 
         br(), 
         div(class = 'value-box-metric', 
-            uiOutput(ns("orders_summary")) %>% withSpinner(type = 8, size = .3, proxy.height = "35px", hide.ui = FALSE),
+            uiOutput(ns("orders_summary")) %>% 
+              withSpinner(type = 8, size = .3, proxy.height = "35px", hide.ui = FALSE),
             span(class = 'value-icon', icon("truck"))),
         hr()), 
     
@@ -71,7 +74,8 @@ init_ui <- function(id) {
         collapsible = FALSE, 
         br(), 
         div(class = 'value-box-metric',
-            uiOutput(ns("orders_on_time_summary")) %>% withSpinner(type = 8, size = .3, proxy.height = "35px", hide.ui = FALSE),
+            uiOutput(ns("orders_on_time_summary")) %>% 
+              withSpinner(type = 8, size = .3, proxy.height = "35px", hide.ui = FALSE),
             span(class = 'value-icon', icon("hourglass end"))),
         hr()), 
   )

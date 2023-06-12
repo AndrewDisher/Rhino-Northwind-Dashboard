@@ -21,6 +21,7 @@ filter_data <- function(data, year, month) {
     cleaned_data <- cleaned_data %>% 
       filter(Month_Number == month)
   }
+  
   cleaned_data <- cleaned_data %>%
     mutate(On_Time = case_when(ShippedDate > RequiredDate ~ 0,
                                ShippedDate <= RequiredDate ~ 1))
@@ -29,7 +30,7 @@ filter_data <- function(data, year, month) {
     summarize(Total_Revenue = round(sum(After_Discount), digits = 0), 
               Total_Freight = round(sum(Freight), digits = 0), 
               Total_Orders = nrow(.),
-              Order_On_Time = round(sum(On_Time, na.rm = TRUE)/nrow(na.omit(.)) * 100, digits = 1))
+              Order_On_Time = round(sum(On_Time, na.rm = TRUE) / nrow(na.omit(.)) * 100, digits = 1))
   
   # Format values for presentation
   values_to_return <- cleaned_data %>% 

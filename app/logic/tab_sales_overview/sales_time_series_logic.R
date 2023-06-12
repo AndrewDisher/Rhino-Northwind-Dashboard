@@ -61,13 +61,13 @@ filter_data <- function(data, year, month) {
 # ------------------------------------------------
 
 #' @export
-time_series_chart <- function(data, year, month) {
+build_time_series_chart <- function(data, year, month) {
   # Compose basic elements of chart (bars. trend line)
   if(month != 0) {
     chart <- data %>%
       e_charts(x = OrderDate) %>% 
       e_bar(serie = Total_Revenue, 
-            name = paste("Total Revenue", year, month.name[month %>% as.numeric()], sep = " "), 
+            name = paste("Revenue", year, month.name[month %>% as.numeric()], sep = " "), 
             itemStyle = list(color = constants$colors$primary), 
             emphasis = list(itemStyle = list(color = constants$colors$secondary))) %>% 
       e_loess(formula = Total_Revenue ~ Days, name = "Smoothed Trend Line", 
@@ -78,7 +78,7 @@ time_series_chart <- function(data, year, month) {
   else {
     chart <- data %>%
       e_charts(x = New_Date) %>%
-      e_bar(serie = Total_Revenue, name = paste("Total Revenue", year, "All months", sep = " "), 
+      e_bar(serie = Total_Revenue, name = paste("Revenue", year, "All months", sep = " "), 
             itemStyle = list(color = constants$colors$primary), 
             emphasis = list(itemStyle = list(color = constants$colors$secondary))) %>% 
       e_loess(formula = Total_Revenue ~ Months, name = "Smoothed Trend Line", 

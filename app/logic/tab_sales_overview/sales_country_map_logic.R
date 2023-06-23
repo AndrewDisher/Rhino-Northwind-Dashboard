@@ -6,7 +6,7 @@ box::use(
   echarts4r[e_charts, e_map, e_tooltip, e_tooltip_choro_formatter, e_visual_map],
   htmlwidgets[JS], 
   shiny[tags],
-  shiny.semantic[modal]
+  shiny.semantic[action_button, modal]
   )
 
 # -------------------------------------------------------------------------
@@ -115,6 +115,9 @@ build_modal <- function(modal_id) {
               tags$li(class = "modal-paragraph", "Zooming can help comparing countries whose labels
                       overlap."))
     ),
+    footer = action_button(input_id = "dismiss_modal",
+                           label = "Dismiss",
+                           class = "ui button positive"),
     settings = list(c("transition", "fly down"))
   )
 }

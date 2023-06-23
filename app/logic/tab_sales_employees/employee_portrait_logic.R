@@ -6,7 +6,7 @@ box::use(
   dplyr[`%>%`, filter], 
   magick[image_read, image_resize, image_write],
   shiny[tags],
-  shiny.semantic[modal]
+  shiny.semantic[action_button, modal]
 )
 
 # ------------------------------------------------
@@ -72,6 +72,9 @@ build_modal <- function(modal_id, employee, notes) {
     content = list(
       tags$p(class = "modal-paragraph", notes)
     ), 
+    footer = action_button(input_id = "dismiss_modal",
+                          label = "Dismiss",
+                          class = "ui button positive"),
     settings = list(c("transition", "fly down"))
   )
 }

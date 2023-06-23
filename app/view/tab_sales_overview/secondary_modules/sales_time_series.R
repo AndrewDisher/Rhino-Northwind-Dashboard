@@ -30,7 +30,7 @@ init_ui <- function(id) {
     # ----- Time Series Modal -----
     uiOutput(ns("modal")),
     
-    # ----- Time Series Modal -----
+    # ----- Time Series Chart -----
     utilities$custom_box(width = 16,
         title = tags$div(class = "label-container", tags$span(class = "title-span", "REVENUE OVER TIME"), 
                          action_button(input_id = ns("show"), label = "", icon = icon("info circle"), class = "help-icon")),

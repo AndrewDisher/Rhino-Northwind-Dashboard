@@ -8,7 +8,7 @@ box::use(
         renderUI, tagList, uiOutput, 
         div, h4, p, span],
   shiny.fluent[Separator],
-  shiny.semantic[action_button, card, icon, modal, show_modal]
+  shiny.semantic[action_button, card, icon, show_modal]
 )
 
 # -------------------------------------------------------------------------

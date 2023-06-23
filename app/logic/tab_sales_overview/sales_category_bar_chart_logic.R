@@ -8,7 +8,7 @@ box::use(
             e_grid, e_labels, e_tooltip, e_x_axis], 
   htmlwidgets[JS],
   shiny[tags],
-  shiny.semantic[modal]
+  shiny.semantic[action_button, modal]
 )
 
 # -------------------------------------------------------------------------
@@ -107,6 +107,9 @@ build_modal <- function(modal_id) {
                         can be seen in the top left value box.")
         ))
     ), 
+    footer = action_button(input_id = "dismiss_modal",
+                           label = "Dismiss",
+                           class = "ui button positive"),
     settings = list(c("transition", "fly down"))
   )
 }

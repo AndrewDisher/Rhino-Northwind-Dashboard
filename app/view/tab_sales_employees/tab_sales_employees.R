@@ -3,7 +3,7 @@
 # -------------------------------------------------------------------------
 
 box::use(
-  shiny[br, fluidRow, moduleServer, NS, tagList], 
+  shiny[fluidRow, moduleServer, NS, tagList], 
   semantic.dashboard[column]
 )
 
@@ -12,7 +12,7 @@ box::use(
 # -------------------------------------------------------------------------
 
 box::use(
-  app/view[employee_value_boxes, employee_portrait]
+  app/view[employee_value_boxes, employee_portrait, employee_orders_table]
 )
 
 # -------------------------------------------------------------------------
@@ -28,7 +28,8 @@ init_ui <- function(id) {
       column(width = 4,
              employee_portrait$init_ui(id = ns("employee_portrait"))
              ),
-      column(width = 12)
+      column(width = 12, 
+             employee_orders_table$init_ui(id = ns("employee_orders")))
     ), 
     fluidRow(
       column(width = 6), 
@@ -57,6 +58,11 @@ init_server <- function(id, employee_orders, employees, year_selection, employee
       employee_portrait$init_server(id = "employee_portrait", 
                                     data = employees, 
                                     selected_employee = employee_name)
+      
+      employee_orders_table$init_server(id = "employee_orders", 
+                                  data = employee_orders,
+                                  selected_year = year_selection,
+                                  selected_employee = employee_name)
       
     }
    )

@@ -7,7 +7,7 @@ box::use(
   echarts4r[e_axis_formatter, e_axis_labels, e_axis_pointer, e_bar, e_charts, 
             e_datazoom, e_loess, e_tooltip, e_tooltip_pointer_formatter, e_y_axis], 
   shiny[tags],
-  shiny.semantic[modal]
+  shiny.semantic[action_button, modal]
   )
 
 # -------------------------------------------------------------------------
@@ -122,6 +122,9 @@ build_modal <- function(modal_id) {
                 period of interest within the year or month.")
       )
     ), 
+    footer = action_button(input_id = "dismiss_modal",
+                           label = "Dismiss",
+                           class = "ui button positive"),
     settings = list(c("transition", "fly down"))
   )
 }

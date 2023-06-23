@@ -12,7 +12,7 @@ box::use(
 # -------------------------------------------------------------------------
 
 box::use(
-  app/view[employee_value_boxes]
+  app/view[employee_value_boxes, employee_portrait]
 )
 
 # -------------------------------------------------------------------------
@@ -25,11 +25,14 @@ init_ui <- function(id) {
   tagList(
     fluidRow(employee_value_boxes$init_ui(id = ns("employee_value_boxes"))),
     fluidRow(
-      column(width = 8,
-             
-             br()
+      column(width = 4,
+             employee_portrait$init_ui(id = ns("employee_portrait"))
              ),
-      column(width = 8)
+      column(width = 12)
+    ), 
+    fluidRow(
+      column(width = 6), 
+      column(width = 10)
     )
   )
 }
@@ -39,7 +42,7 @@ init_ui <- function(id) {
 # -------------------------------------------------------------------------
 
 #' @export
-init_server <- function(id, employee_orders, year_selection, employee_name) {
+init_server <- function(id, employee_orders, employees, year_selection, employee_name) {
   moduleServer(
     id,
     function(input, output, session) {
@@ -50,6 +53,10 @@ init_server <- function(id, employee_orders, year_selection, employee_name) {
                                        data = employee_orders, 
                                        selected_year = year_selection, 
                                        selected_employee = employee_name)
+      
+      employee_portrait$init_server(id = "employee_portrait", 
+                                    data = employees, 
+                                    selected_employee = employee_name)
       
     }
    )

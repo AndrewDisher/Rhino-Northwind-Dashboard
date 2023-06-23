@@ -143,7 +143,7 @@ server <- function(id) {
     # ------------------------------------------
     revenue_data <- reactive({retrieve_data$fetch_revenue_data()})
     revenue_data_by_category <- reactive({retrieve_data$fetch_revenue_data_by_category()})
-    employees <- reactive({retrieve_data$fetch_employees()})
+    employees <- reactive({retrieve_data$fetch_employees()$data})
     employee_orders <- reactive({retrieve_data$fetch_employee_orders()})
     products_table <- reactive({retrieve_data$fetch_products_table()})
     product_orders <- reactive({retrieve_data$fetch_product_orders()})
@@ -178,7 +178,8 @@ server <- function(id) {
                                    month_selection = month_selection)
     
     tab_sales_employees$init_server(id = "tab_sales_employees", 
-                                    employee_orders = employee_orders, 
+                                    employee_orders = employee_orders,
+                                    employees = employees,
                                     year_selection = year_selection, 
                                     employee_name = employee_name)
   })

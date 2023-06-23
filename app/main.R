@@ -17,7 +17,7 @@ box::use(
 
 box::use(
   app/logic[constants, retrieve_data, utilities],
-  app/view[tab_sales_overview]
+  app/view[tab_sales_overview, tab_sales_employees]
 )
 
 # -------------------------------------------------------------------------
@@ -108,7 +108,7 @@ ui <- function(id) {
   body <- dashboardBody(
     tabItems(
       tabItem(tabName = "salesOverview", tab_sales_overview$init_ui(id = ns("tab_sales_overview"))), 
-      tabItem(tabName = "employees"), 
+      tabItem(tabName = "employees", tab_sales_employees$init_ui(id = ns("tab_sales_employees"))), 
       tabItem(tabName = "productInventory")
     )
   )
@@ -176,5 +176,10 @@ server <- function(id) {
                                    revenue_data_by_category = revenue_data_by_category,
                                    year_selection = year_selection, 
                                    month_selection = month_selection)
+    
+    tab_sales_employees$init_server(id = "tab_sales_employees", 
+                                    employee_orders = employee_orders, 
+                                    year_selection = year_selection, 
+                                    employee_name = employee_name)
   })
 }

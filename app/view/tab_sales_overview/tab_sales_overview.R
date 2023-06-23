@@ -3,8 +3,9 @@
 # -------------------------------------------------------------------------
 
 box::use(
+  semantic.dashboard[column],
   shiny[br, fluidRow, moduleServer, NS, tagList], 
-  semantic.dashboard[column]
+  shiny.semantic[grid, grid_template]
 )
 
 # -------------------------------------------------------------------------
@@ -12,7 +13,8 @@ box::use(
 # -------------------------------------------------------------------------
 
 box::use(
-  app/view[sales_value_boxes, sales_time_series, sales_category_bar_chart]
+  app/view[sales_value_boxes, sales_time_series, sales_category_bar_chart, 
+           sales_country_map]
 )
 
 # -------------------------------------------------------------------------
@@ -24,11 +26,11 @@ init_ui <- function(id) {
   tagList(
     fluidRow(sales_value_boxes$init_ui(id = ns("sales_value_boxes"))),
     fluidRow(
-      column(width = 8, 
-             sales_time_series$init_ui(id = ns("sales_time_series")), 
-             br(), 
-             sales_category_bar_chart$init_ui(id = ns("sales_category_bar_chart"))), 
-      column(width = 8)
+      column(width = 8,
+             sales_time_series$init_ui(id = ns("sales_time_series")),
+             br(),
+             sales_category_bar_chart$init_ui(id = ns("sales_category_bar_chart"))),
+      column(width = 8, sales_country_map$init_ui(id = ns("sales_country_map")))
     )
   )
 }
@@ -58,6 +60,11 @@ init_server <- function(id, revenue_data, revenue_data_by_category, year_selecti
                                            data = revenue_data_by_category, 
                                            selected_year = year_selection, 
                                            selected_month = month_selection)
+      
+      sales_country_map$init_server(id = "sales_country_map", 
+                                    data = revenue_data, 
+                                    selected_year = year_selection, 
+                                    selected_month = month_selection)
     }
    )
 }

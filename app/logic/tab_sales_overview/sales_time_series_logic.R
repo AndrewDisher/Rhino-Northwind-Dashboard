@@ -5,8 +5,10 @@
 box::use(
   dplyr[`%>%`, filter, group_by, mutate, summarize, ungroup],
   echarts4r[e_axis_formatter, e_axis_labels, e_axis_pointer, e_bar, e_charts, 
-            e_datazoom, e_loess, e_tooltip, e_tooltip_pointer_formatter, e_y_axis]
-)
+            e_datazoom, e_loess, e_tooltip, e_tooltip_pointer_formatter, e_y_axis], 
+  shiny[tags],
+  shiny.semantic[modal]
+  )
 
 # -------------------------------------------------------------------------
 # ---------------------------------- Modules ------------------------------
@@ -98,4 +100,28 @@ build_time_series_chart <- function(data, year, month) {
     e_axis_pointer(label = list(show = FALSE))
   
   return(chart)
+}
+
+# -------------------------------------------
+# ----- Function to populate info modal -----
+# -------------------------------------------
+
+#' @export
+build_modal <- function(modal_id) {
+  modal(
+    id = modal_id, 
+    header = list(tags$h4(class = "modal-title", "Company Revenue Over Time")), 
+    content = list(
+      tags$h4(class = "modal-description-header", "Tips"),
+      tags$ul(style = "list-style-type: disc;",
+        tags$li(class = "modal-paragraph", "Hovering over a day of the month or the month itself displays 
+                a tooltip to compare the trend line to the actual revenue value. "), 
+        tags$li(class = "modal-paragraph", "If the green trend line's values are the same as the
+                the actual values, then there is not enough data to produce an informative trend line."),
+        tags$li(class = "modal-paragraph", "Try dragging the slider underneathe the chart to isolate a
+                period of interest within the year or month.")
+      )
+    ), 
+    settings = list(c("transition", "fly down"))
+  )
 }

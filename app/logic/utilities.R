@@ -72,13 +72,13 @@ custom_box <- function(..., title = NULL, color = "", ribbon = TRUE, title_side 
   # nolint end
   column(width = width,
          tags$div(class = paste("ui segment raised", color),
-                    tags$div(id = box_id, class = "ui accordion",
-                               tags$div(id = title_id, class = "title", style = "cursor: auto", label),
-                               tags$div(class = "content active", tags$div(...))
-                    )
-         ),
+                  tags$div(id = box_id, class = "ui accordion",
+                           tags$div(id = title_id, class = "title", style = "cursor: auto", label),
+                           tags$div(class = "content active", tags$div(...))
+                           )
+                  ),
          if (collapsible) singleton(
            tags$script(HTML(paste0("$(document).ready(function() {", js_script, " })")))
+           )
          )
-  )
 }

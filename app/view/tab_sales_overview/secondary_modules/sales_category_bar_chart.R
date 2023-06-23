@@ -6,7 +6,8 @@ box::use(
   dplyr[`%>%`],
   echarts4r[echarts4rOutput, renderEcharts4r],
   semantic.dashboard[icon],
-  shiny[moduleServer, NS, reactive, req, tagList],
+  shiny[moduleServer, NS, observeEvent, reactive, renderUI, tags, tagList, uiOutput],
+  shiny.semantic[action_button, icon, show_modal], 
   shinycssloaders[withSpinner]
 )
 
@@ -26,8 +27,14 @@ box::use(
 init_ui <- function(id) {
   ns <- NS(id)
   tagList(
+    # ----- Bar Chart Modal -----
+    uiOutput(ns("modal")),
+    
+    # ----- Bar Chart Box -----
     utilities$custom_box(width = 16, 
-        title = "REVENUE BY PRODUCT CATEGORY", 
+        # title = "REVENUE BY PRODUCT CATEGORY", 
+        title = tags$div(class = "label-container", tags$span(class = "title-span", "REVENUE BY PRODUCT CATEGORY"), 
+                         action_button(input_id = ns("show"), label = "", icon = icon("info circle"), class = "help-icon")),
         ribbon = FALSE, 
         title_side = "top", 
         collapsible = FALSE, 
@@ -63,6 +70,17 @@ init_server <- function(id, data, selected_year, selected_month) {
         sales_category_bar_chart_logic$build_bar_chart(data = bar_chart_data(), 
                                                  year = selected_year(), 
                                                  month = selected_month())
+      })
+      
+      # --------------------------------
+      # ----- Bar Chart Info Modal -----
+      # --------------------------------
+      observeEvent(input$show, {
+        show_modal(id = "modal_UI")
+      })
+      
+      output$modal <- renderUI({
+        sales_category_bar_chart_logic$build_modal(modal_id = session$ns("modal_UI"))
       })
     }
    )

@@ -6,9 +6,10 @@ box::use(
   dplyr[`%>%`, arrange, filter, group_by, mutate, summarize, ungroup], 
   echarts4r[e_axis_formatter, e_axis_labels, e_bar, e_charts, e_flip_coords, 
             e_grid, e_labels, e_tooltip, e_x_axis], 
-  htmlwidgets[JS]
+  htmlwidgets[JS],
+  shiny[tags],
+  shiny.semantic[modal]
 )
-
 
 # -------------------------------------------------------------------------
 # ---------------------------------- Modules ------------------------------
@@ -85,5 +86,27 @@ build_bar_chart <- function(data, year, month) {
     return(chart)
 }
 
+# -------------------------------------------
+# ----- Function to populate info modal -----
+# -------------------------------------------
 
-
+#' @export
+build_modal <- function(modal_id) {
+  modal(
+    id = modal_id, 
+    header = list(tags$h4(class = "modal-title", "Company Revenue by Product Category")), 
+    content = list(
+      tags$h4(class = "modal-description-header", "Tips"),
+      tags$p(class = "modal-paragraph", 
+        tags$ul(style = "list-style-type: disc;", 
+                tags$li(class = "modal-paragraph", "The aggregated revenue by product 
+                        category appears to the right of the individual bars. The on-hover
+                        tooltip shows the percentage of total company revenue for the period
+                        that the category of products has contributed to. "), 
+                tags$li(class = "modal-paragraph", "The totoal revenue for the time period 
+                        can be seen in the top left value box.")
+        ))
+    ), 
+    settings = list(c("transition", "fly down"))
+  )
+}

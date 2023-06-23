@@ -27,35 +27,49 @@ box::use(
 init_ui <- function(id) {
   ns <- NS(id)
   tagList(
+    # ----- Employee Info Modal -----
+    uiOutput(ns("modal")),
+    
+    # ----- Employee Portrait Card -----
     column(width = 4,
            card(class = "employeeImage", style = "width: 400px;",
                 div(class = "modal-container", 
                     uiOutput(ns("employee_name")), 
                     action_button(input_id = ns("show"), label = "", icon = icon("info circle"), class = "info-button")),
+                
                 div(class = "image", 
                     imageOutput(ns("employee_photo"), width = '100%', height = 'auto', fill = TRUE)),
+                
                 Separator("Hire Info"),
+                
                 div(class = "info-container",
                     span(class = "attribute-span", "Hire Date: "),
                     uiOutput(ns("employee_hire_date"))),
+                
                 div(class = "info-container", 
                     span(class = "attribute-span", "Region: "),
                     uiOutput(ns("employee_region"))), 
+                
                 div(class = "info-container", 
                     span(class = "attribute-span", "Country: "),
                     uiOutput(ns("employee_country"))),
+                
                 div(class = "info-container", 
                     span(class = "attribute-span", "City: "),
                     uiOutput(ns("employee_city"))), 
+                
                 div(class = "info-container", 
                     span(class = "attribute-span", "Home Phone: "),
                     uiOutput(ns("employee_phone"))), 
+                
                 div(class = "info-container", 
                     span(class = "attribute-span", "Title: "),
                     uiOutput(ns("employee_job_title"))), 
+                
                 div(class = "info-container", 
                     span(class = "attribute-span", "Reports To: "),
                     uiOutput(ns("reports_to"))), 
+                
                 div(class = "info-container", 
                     span(class = "attribute-span", "Title of Courtesy: "),
                     uiOutput(ns("employee_polite_title")))
@@ -78,6 +92,19 @@ init_server <- function(id, data, selected_employee) {
       portrait_elements <- reactive({
         employee_portrait_logic$get_portrait_elements(data = data(), 
                                                       employee = selected_employee())
+      })
+      
+      # --------------------------------
+      # ----- Employee Info Modal ------
+      # --------------------------------
+      observeEvent(input$show, {
+        show_modal(id = "modal_UI")
+      })
+      
+      output$modal <- renderUI({
+        employee_portrait_logic$build_modal(modal_id = session$ns("modal_UI"), 
+                                            employee = selected_employee(), 
+                                            notes = portrait_elements()$notes)
       })
       
       # -------------------

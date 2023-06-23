@@ -4,7 +4,9 @@
 
 box::use(
   dplyr[`%>%`, filter], 
-  magick[image_read, image_resize, image_write]
+  magick[image_read, image_resize, image_write],
+  shiny[tags],
+  shiny.semantic[modal]
 )
 
 # ------------------------------------------------
@@ -36,7 +38,7 @@ get_portrait_elements <- function(data, employee) {
   
   # Discover who the employee reports to (if anybody)
   if(is.na(employee_info$ReportsTo)) {
-    reports_to <- "Nobody" %>% as.vector()
+    reports_to <- "Nobody"
   }
   else {
     reports_to <- data[data$EmployeeID == employee_info$ReportsTo, "FullName"]
@@ -56,4 +58,20 @@ get_portrait_elements <- function(data, employee) {
                             )
   
   return(portrait_elements)
+}
+
+# -------------------------------------------
+# ----- Function to populate info modal -----
+# -------------------------------------------
+
+#' @export
+build_modal <- function(modal_id, employee, notes) {
+  modal(
+    id = modal_id, 
+    header = list(tags$h4(class = "modal-title", employee)), 
+    content = list(
+      tags$p(class = "modal-paragraph", notes)
+    ), 
+    settings = list(c("transition", "fly down"))
+  )
 }

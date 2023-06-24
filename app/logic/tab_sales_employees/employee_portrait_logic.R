@@ -68,8 +68,9 @@ get_portrait_elements <- function(data, employee) {
 build_modal <- function(modal_id, employee, notes) {
   modal(
     id = modal_id, 
-    header = list(tags$h4(class = "modal-title", paste0(employee, "'s", " Background"))), 
+    header = list(tags$h4(class = "modal-title", employee)), 
     content = list(
+      tags$h4(class = "modal-description-header", "Background"),
       tags$p(class = "modal-paragraph", notes)
     ), 
     footer = action_button(input_id = "dismiss_modal",

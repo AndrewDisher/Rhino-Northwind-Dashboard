@@ -5,9 +5,9 @@
 box::use(
   dplyr[`%>%`],
   echarts4r[echarts4rOutput, renderEcharts4r],
-  shiny[moduleServer, NS, reactive, tagList, 
+  shiny[moduleServer, NS, observeEvent, reactive, renderUI, tagList, uiOutput, 
         div, span], 
-  shiny.semantic[action_button, icon],
+  shiny.semantic[action_button, icon, show_modal],
   shinycssloaders[withSpinner]
 )
 
@@ -27,7 +27,10 @@ box::use(
 init_ui <- function(id) {
   ns <- NS(id)
   tagList(
-    # Revenue Time Series
+    # ----- Employee Performance Modal -----
+    uiOutput(ns("modal")),
+    
+    # ----- Employee Performance Radar Chart -----
     utilities$custom_box(width = 16, 
                title = div(class = "label-container", span(class = "title-span", "EMPLOYEE PERFORMANCE"), 
                            action_button(input_id = ns("show"), label = "", icon = icon("info circle"), class = "help-icon")), 
@@ -68,6 +71,17 @@ init_server <- function(id, data, selected_year, selected_employee) {
         employee_performance_logic$build_radar_chart(data = radar_chart_data(), 
                                                      year = selected_year(), 
                                                      employee = selected_employee())
+      })
+      
+      # -----------------------------
+      # ----- Radar Chart Modal -----
+      # -----------------------------
+      observeEvent(input$show, {
+        show_modal(id = "modal_UI")
+      })
+      
+      output$modal <- renderUI({
+        employee_performance_logic$build_modal(modal_id = session$ns("modal_UI"))
       })
     }
    )

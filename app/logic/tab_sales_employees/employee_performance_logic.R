@@ -6,7 +6,7 @@ box::use(
   dplyr[`%>%`, filter, group_by, mutate, summarize, ungroup], 
   echarts4r[e_charts, e_radar, e_tooltip],
   shiny[tags],
-  shiny.semantic[icon, modal], 
+  shiny.semantic[action_button, icon, modal], 
   tidyr[pivot_longer]
 )
 
@@ -83,4 +83,37 @@ build_radar_chart <- function(data, year, employee) {
     e_tooltip(trigger = "item")
   
   return(chart)
+}
+
+# -------------------------------------------
+# ----- Function to populate info modal -----
+# -------------------------------------------
+
+#' @export
+build_modal <- function(modal_id) {
+  modal(
+    id = modal_id,
+    header = list(tags$h4(class = "modal-title", "Employee Performance")),
+    content = list(
+      tags$h4(class = "modal-description-header", "Description"),
+      tags$p(class = "modal-paragraph",
+        "Employee performance is rated using four metrics:"), 
+      tags$p(class = "modal-paragraph", 
+        tags$ul(style = "list-style-type: disc;", 
+                tags$li(class = "modal-paragraph", "Revenue Generated"), 
+                tags$li(class = "modal-paragraph", "Revenue Contribution"),
+                tags$li(class = "modal-paragraph", "Average Revenue per Order"), 
+                tags$li(class = "modal-paragraph", "Number of Orders")
+        )),
+      tags$p(class = "modal-paragraph", 
+        "Each of these metrics were scored on a scale of one to ten, and each employee's yearly performance was 
+              derived from this scoring method. A score of zero in any category corresponds to one of zero dollars generated, zero 
+              dollars per order, zero percent revenue contributed, or zero orders. A score of ten is awarded when achieving the greatest 
+              value of all employees in any category.")
+    ),
+    footer = action_button(input_id = "dismiss_modal",
+                           label = "Dismiss",
+                           class = "ui button positive"),
+    settings = list(c("transition", "fly down"))
+  )
 }

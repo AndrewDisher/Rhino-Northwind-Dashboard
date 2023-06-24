@@ -68,7 +68,7 @@ get_portrait_elements <- function(data, employee) {
 build_modal <- function(modal_id, employee, notes) {
   modal(
     id = modal_id, 
-    header = list(tags$h4(class = "modal-title", employee)), 
+    header = list(tags$h4(class = "modal-title", paste0(employee, "'s", " Background"))), 
     content = list(
       tags$p(class = "modal-paragraph", notes)
     ), 

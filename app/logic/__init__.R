@@ -11,5 +11,6 @@ box::use(
   ./tab_sales_overview/sales_country_map_logic, 
   ./tab_sales_employees/employee_value_boxes_logic, 
   ./tab_sales_employees/employee_portrait_logic, 
-  ./tab_sales_employees/employee_orders_table_logic
+  ./tab_sales_employees/employee_orders_table_logic, 
+  ./tab_sales_employees/employee_performance_logic
 )

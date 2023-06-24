@@ -12,7 +12,8 @@ box::use(
 # -------------------------------------------------------------------------
 
 box::use(
-  app/view[employee_value_boxes, employee_portrait, employee_orders_table]
+  app/view[employee_value_boxes, employee_orders_table, employee_performance, 
+           employee_portrait]
 )
 
 # -------------------------------------------------------------------------
@@ -32,7 +33,7 @@ init_ui <- function(id) {
              employee_orders_table$init_ui(id = ns("employee_orders")))
     ), 
     fluidRow(
-      column(width = 6), 
+      column(width = 6, employee_performance$init_ui(id = ns("employee_performance"))), 
       column(width = 10)
     )
   )
@@ -63,6 +64,11 @@ init_server <- function(id, employee_orders, employees, year_selection, employee
                                   data = employee_orders,
                                   selected_year = year_selection,
                                   selected_employee = employee_name)
+      
+      employee_performance$init_server(id = "employee_performance", 
+                                       data = employee_orders, 
+                                       selected_year = year_selection,
+                                       selected_employee = employee_name)
       
     }
    )

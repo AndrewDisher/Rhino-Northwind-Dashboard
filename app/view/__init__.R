@@ -11,5 +11,6 @@ box::use(
   ./tab_sales_employees/secondary_modules/employee_value_boxes, 
   ./tab_sales_employees/secondary_modules/employee_portrait, 
   ./tab_sales_employees/secondary_modules/employee_orders_table, 
-  ./tab_sales_employees/secondary_modules/employee_performance
+  ./tab_sales_employees/secondary_modules/employee_performance, 
+  ./tab_sales_employees/secondary_modules/employee_time_series
 )

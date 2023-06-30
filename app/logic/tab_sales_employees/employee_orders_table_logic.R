@@ -19,7 +19,7 @@ filter_data <- function(data, year, employee) {
   cleaned_data <- data %>%
     filter(Year == year) %>%
     filter(FullName == employee) %>% 
-    select(-c(Year, FullName, Month_Number))
+    select(-c(Year, FullName, Month_Number, New_Date))
   
   # Reformat Revenue and Freight columns
   cleaned_data <- cleaned_data %>% 

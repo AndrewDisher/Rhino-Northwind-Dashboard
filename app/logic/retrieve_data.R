@@ -22,7 +22,6 @@ box::use(
 # ----- Connect/disconnect to/from the local database file -----
 # --------------------------------------------------------------
 
-#' @export
 establish_con <- function() {
   con <- dbConnect(
     drv = SQLite(), 
@@ -31,7 +30,6 @@ establish_con <- function() {
   return(con)
 }
 
-#' @export
 close_con <- function(con) {
   dbDisconnect(conn = con)
 }
@@ -139,7 +137,8 @@ fetch_employee_orders <- function() {
   cleaned_data <- raw_data %>% 
     mutate(OrderDate = as.Date(OrderDate, format = "%Y-%m-%d"), 
            Year = format(OrderDate, "%Y"), 
-           Month_Number = month(OrderDate))
+           Month_Number = month(OrderDate), 
+           New_Date = paste0(Year, "-", Month_Number, "-", "01") %>% as.Date(format = "%Y-%m-%d"))
   
   return(cleaned_data)
 }

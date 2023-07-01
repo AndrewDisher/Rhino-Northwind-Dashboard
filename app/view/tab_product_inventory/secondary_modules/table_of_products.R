@@ -6,7 +6,8 @@ box::use(
   dplyr[`%>%`],
   DT[dataTableOutput, renderDataTable],
   echarts4r[echarts4rOutput, renderEcharts4r],
-  shiny[moduleServer, NS, observeEvent, reactive, renderUI, req, tagList, uiOutput,
+  shiny[moduleServer, NS, observeEvent, reactive, renderText, renderUI, req, 
+        tagList, textOutput, uiOutput,
         div, h2, p, span],
   shinyjs[useShinyjs],
   shiny.semantic[action_button, create_modal, icon, modal, show_modal], 
@@ -29,10 +30,14 @@ box::use(
 init_ui <- function(id) {
   ns <- NS(id)
   tagList(
+    # ----- UI Output for Modal -----
+    uiOutput(ns("modal")),
+    
+    # ----- Products Table -----
     utilities$custom_box(width = 12,
                          title = div(class = "label-container",
                                      span(class = "title-span", "TABLE OF PRODUCTS"),
-                                     action_button(input_id = ns("info"),
+                                     action_button(input_id = ns("show"),
                                                    label = "", 
                                                    icon = icon("info circle"), 
                                                    class = "help-icon")
@@ -74,23 +79,32 @@ init_server <- function(id, products_table, product_orders) {
         table_of_products_logic$build_data_table(data = table_data())
       })
       
-      # ---------------------------------------------------
-      # ----- Reactive Data Filtering for Modal Chart -----
-      # ---------------------------------------------------
-      modal_time_series_data <- reactive({
-        shiny::req(input$button_id)
+      # ---------------------------------------------
+      # ----- Reactive Data Filtering for Modal -----
+      # ---------------------------------------------
+      modal_data <- reactive({
+        req(input$button_id)
         
         table_of_products_logic$filter_data_for_modal(data = product_orders(),
                                                       button_id = input$button_id)
+      })
+      
+      # -----------------------------------
+      # ----- Render the Modal Header -----
+      # -----------------------------------
+      output$modal_header <- renderText({
+        req(input$button_id)
+        
+        modal_data()$product_name
       })
       
       # -------------------------------------------
       # ----- Build the Time Series for Modal -----
       # -------------------------------------------
       output$modal_plot <- renderEcharts4r({
-        shiny::req(input$button_id)
+        req(input$button_id)
         
-        table_of_products_logic$build_modal_time_series(data = modal_time_series_data())
+        table_of_products_logic$build_modal_time_series(data = modal_data()$time_series_data)
       })
       
       # --------------------------------------------
@@ -100,7 +114,7 @@ init_server <- function(id, products_table, product_orders) {
         create_modal(modal(
           id = session$ns("details_modal"),
           
-          header = h2(class = "modal-title", " This is a god damn HEADER!"),
+          header = h2(class = "modal-title", textOutput(session$ns("modal_header"))),
           
           content = list(p(class = "modal-paragraph", ""),
                          echarts4rOutput(session$ns("modal_plot"))),
@@ -111,6 +125,17 @@ init_server <- function(id, products_table, product_orders) {
           
           settings = list(c("transition", "fly down"))
         ))
+      })
+      
+      # -------------------------------
+      # ----- Order's Table Modal -----
+      # -------------------------------
+      observeEvent(input$show, {
+        show_modal(id = "table_modal")
+      })
+      
+      output$modal <- renderUI({
+        table_of_products_logic$build_table_modal(modal_id = session$ns("table_modal"))
       })
     }
    )

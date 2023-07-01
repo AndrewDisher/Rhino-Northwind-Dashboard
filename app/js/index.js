@@ -27,3 +27,9 @@ export function getId(clicked_id) {
   console.log(clicked_id);
   Shiny.setInputValue('app-tab_product_inventory-table_of_products-button_id', clicked_id, {priority: 'event'});
 }
+
+// Format the tooltip for the product lead time bar chart
+export function formatLeadTimeTooltip(params) { 
+  return(params.marker + params.value[0] + ': ' + 
+  '<strong>' + params.value[1] + '</strong>' + ' days')
+}

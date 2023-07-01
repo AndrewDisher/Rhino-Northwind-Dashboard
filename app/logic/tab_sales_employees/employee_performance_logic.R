@@ -4,7 +4,7 @@
 
 box::use(
   dplyr[`%>%`, filter, group_by, mutate, summarize, ungroup], 
-  echarts4r[e_charts, e_radar, e_tooltip],
+  echarts4r[e_charts, e_radar, e_toolbox_feature, e_tooltip],
   shiny[tags],
   shiny.semantic[action_button, icon, modal], 
   tidyr[pivot_longer]
@@ -80,7 +80,8 @@ build_radar_chart <- function(data, year, employee) {
                             lineStyle = list(color = constants$colors$secondary), 
                             areaStyle = list(color = constants$colors$secondary, 
                                              opacity = .3))) %>% 
-    e_tooltip(trigger = "item")
+    e_tooltip(trigger = "item") %>% 
+    e_toolbox_feature(feature = "saveAsImage")
   
   return(chart)
 }

@@ -17,5 +17,7 @@ box::use(
   
   ./tab_product_inventory/tab_product_inventory, 
   ./tab_product_inventory/secondary_modules/inventory_value_boxes,
-  ./tab_product_inventory/secondary_modules/table_of_products
+  ./tab_product_inventory/secondary_modules/table_of_products, 
+  ./tab_product_inventory/secondary_modules/inventory_bar_chart,
+  ./tab_product_inventory/secondary_modules/product_lead_times
 )

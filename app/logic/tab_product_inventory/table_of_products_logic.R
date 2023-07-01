@@ -4,9 +4,11 @@
 
 box::use(
   dplyr[`%>%`, case_when, filter, group_by, mutate, row_number, select, summarize],
+  DT[datatable],
   echarts4r[e_axis_formatter, e_axis_labels, e_axis_pointer, e_bar, e_charts, 
             e_datazoom, e_loess, e_tooltip, e_tooltip_pointer_formatter, e_y_axis],
-  DT[datatable]
+  shiny[tags],
+  shiny.semantic[action_button, modal]
 )
 
 # -------------------------------------------------------------------------
@@ -64,18 +66,32 @@ build_data_table <- function(data) {
 
 #' @export
 filter_data_for_modal <- function(data, button_id) {
+  # ----- Generic Data Filtering ----- 
   # Acquire product ID
   product_id <- strsplit(button_id, "_")[[1]][2] %>% 
     as.numeric()
   
   # Filter data by product ID
   cleaned_data <- data %>%
-    filter(ProductID == product_id) %>%
+    filter(ProductID == product_id)
+  
+  # ----- Filtering for Time Series Data -----
+  time_series_data <- cleaned_data %>%
     group_by(New_Date) %>%
     summarize(Revenue = sum(After_Discount)) %>% 
     mutate(Months = row_number())
   
-  return(cleaned_data)
+  # ----- Acquire Product Name Using ID -----
+  product_name <- cleaned_data %>%
+    select(ProductName) %>%
+    unlist() %>%
+    unique()
+  
+  # ---- Store Output Values in Named List -----
+  return_list <- list(time_series_data = time_series_data, 
+                      product_name = product_name)
+  
+  return(return_list)
 }
 
 # ------------------------------------------------------------------
@@ -90,7 +106,8 @@ build_modal_time_series <- function(data) {
           itemStyle = list(color = constants$colors$primary), 
           emphasis = list(itemStyle = list(color = constants$colors$secondary, 
                                            borderColor = constants$colors$secondary))) %>% 
-    e_loess(formula = Revenue ~ Months, name = "Trend Line", 
+    e_loess(formula = Revenue ~ Months, name = "Trend Line",
+            smooth = TRUE,
             itemStyle = list(color = constants$colors$secondary), 
             emphasis = list(itemStyle = list(color = constants$colors$turquoise, 
                                              borderColor = constants$colors$primary))) %>% 
@@ -105,7 +122,26 @@ build_modal_time_series <- function(data) {
   return(chart)
 }
 
-# -------------------------------------------------------------
-# ----- Function to acquire product name for modal header -----
-# -------------------------------------------------------------
+# -----------------------------------------
+# ----- Function to build table modal -----
+# -----------------------------------------
 
+#' @export
+build_table_modal <- function(modal_id) {
+  modal(
+    id = modal_id, 
+    header = list(tags$h4(class = "modal-title", "Table of Products")), 
+    content = list(
+      tags$h4(class = "modal-description-header", "Tips"),
+      tags$ul(style = "list-style-type: disc;",
+              tags$li(class = "modal-paragraph", "Click the button within the row 
+                      that corresponds to the product your are interested in to view
+                      more in depth information regarding that product.")
+      )
+    ), 
+    footer = action_button(input_id = "dismiss_modal",
+                           label = "Dismiss",
+                           class = "ui button positive"),
+    settings = list(c("transition", "fly down"))
+  )
+}

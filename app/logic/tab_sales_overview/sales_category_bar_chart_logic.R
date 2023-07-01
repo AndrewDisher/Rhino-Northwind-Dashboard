@@ -5,7 +5,7 @@
 box::use(
   dplyr[`%>%`, arrange, filter, group_by, mutate, summarize, ungroup], 
   echarts4r[e_axis_formatter, e_axis_labels, e_bar, e_charts, e_flip_coords, 
-            e_grid, e_labels, e_tooltip, e_x_axis], 
+            e_grid, e_labels, e_toolbox_feature, e_tooltip, e_x_axis], 
   htmlwidgets[JS],
   shiny[tags],
   shiny.semantic[action_button, modal]
@@ -81,7 +81,8 @@ build_bar_chart <- function(data, year, month) {
     e_tooltip(formatter = JS("App.barChartTooltip")) %>% 
     e_axis_labels(y = 'Category', x = 'USD') %>% 
     e_x_axis(formatter = e_axis_formatter("currency")) %>% 
-    e_grid(left = '13%', bottom = '8%')
+    e_grid(left = '13%', bottom = '8%') %>% 
+    e_toolbox_feature(feature = "saveAsImage")
     
     return(chart)
 }

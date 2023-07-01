@@ -5,7 +5,8 @@
 box::use(
   dplyr[`%>%`],
   echarts4r[echarts4rOutput, renderEcharts4r],
-  shiny[moduleServer, NS, observeEvent, reactive, renderUI, tags, tagList, uiOutput],
+  shiny[moduleServer, NS, observeEvent, reactive, renderUI, tagList, uiOutput,
+        div, span],
   shiny.semantic[action_button, icon, show_modal], 
   shinycssloaders[withSpinner]
 )
@@ -15,7 +16,7 @@ box::use(
 # -------------------------------------------------------------------------
 
 box::use(
-  app/logic[sales_category_bar_chart_logic, utilities]
+  app/logic[inventory_bar_chart_logic, utilities]
 )
 
 # -------------------------------------------------------------------------
@@ -31,15 +32,20 @@ init_ui <- function(id) {
     
     # ----- Bar Chart Box -----
     utilities$custom_box(width = 16, 
-        title = tags$div(class = "label-container", tags$span(class = "title-span", "REVENUE BY PRODUCT CATEGORY"), 
-                         action_button(input_id = ns("show"), label = "", icon = icon("info circle"), class = "help-icon")),
-        ribbon = FALSE, 
-        title_side = "top", 
-        collapsible = FALSE, 
-        
-        # Echarts bar chart
-        echarts4rOutput(ns("bar_chart"), height = "280px") %>%
-          withSpinner(type = 8)
+                         title = div(class = "label-container", 
+                                          span(class = "title-span", 
+                                                    "INVENTORY VALUE BY PRODUCT CATEGORY"), 
+                                          action_button(input_id = ns("show"), 
+                                                        label = "", 
+                                                        icon = icon("info circle"), 
+                                                        class = "help-icon")),
+                         ribbon = FALSE, 
+                         title_side = "top", 
+                         collapsible = FALSE, 
+                         
+                         # Echarts bar chart
+                         echarts4rOutput(ns("bar_chart"), height = "280px") %>%
+                           withSpinner(type = 8)
     )
   )
 }
@@ -49,7 +55,7 @@ init_ui <- function(id) {
 # -------------------------------------------------------------------------
 
 #' @export
-init_server <- function(id, data, selected_year, selected_month) {
+init_server <- function(id, data) {
   moduleServer(
     id,
     function(input, output, session) {
@@ -57,18 +63,14 @@ init_server <- function(id, data, selected_year, selected_month) {
       # ----- Reactive Data Filtering -----
       # -----------------------------------
       bar_chart_data <- reactive({
-        sales_category_bar_chart_logic$filter_data(data = data(), 
-                                                   year = selected_year(), 
-                                                   month = selected_month())
+        inventory_bar_chart_logic$summarize_categories(data = data())
       })
       
       # --------------------------------------
       # ----- Echarts4r Bar Chart Output -----
       # --------------------------------------
       output$bar_chart <- renderEcharts4r({
-        sales_category_bar_chart_logic$build_bar_chart(data = bar_chart_data(), 
-                                                 year = selected_year(), 
-                                                 month = selected_month())
+        inventory_bar_chart_logic$build_bar_chart(data = bar_chart_data())
       })
       
       # --------------------------------
@@ -79,7 +81,7 @@ init_server <- function(id, data, selected_year, selected_month) {
       })
       
       output$modal <- renderUI({
-        sales_category_bar_chart_logic$build_modal(modal_id = session$ns("modal_UI"))
+        inventory_bar_chart_logic$build_modal(modal_id = session$ns("modal_UI"))
       })
     }
    )

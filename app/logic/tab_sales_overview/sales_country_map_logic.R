@@ -3,7 +3,7 @@
 # -------------------------------------------------------------------------
 box::use(
   dplyr[`%>%`, filter, group_by, summarize, ungroup], 
-  echarts4r[e_charts, e_map, e_tooltip, e_tooltip_choro_formatter, e_visual_map],
+  echarts4r[e_charts, e_map, e_toolbox_feature, e_tooltip, e_tooltip_choro_formatter, e_visual_map],
   htmlwidgets[JS], 
   shiny[tags],
   shiny.semantic[action_button, modal]
@@ -92,7 +92,8 @@ build_country_map <- function(data) {
       borderWidth = 1,
       borderColor = constants$colors$primary, 
       extraCssText = "box-shadow: 0 3px 12px rgba(0,0,0,0.2);"
-      )
+      ) %>% 
+    e_toolbox_feature(feature = "saveAsImage")
 }
 
 # -------------------------------------------

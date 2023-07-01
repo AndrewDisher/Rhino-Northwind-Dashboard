@@ -5,7 +5,7 @@
 box::use(
   dplyr[`%>%`, filter, group_by, mutate, summarize, ungroup],
   echarts4r[e_axis_formatter, e_axis_labels, e_axis_pointer, e_bar, e_charts, 
-            e_datazoom, e_loess, e_tooltip, e_tooltip_pointer_formatter, e_y_axis], 
+            e_datazoom, e_loess, e_toolbox_feature, e_tooltip, e_tooltip_pointer_formatter, e_y_axis], 
   shiny[tags],
   shiny.semantic[action_button, modal]
   )
@@ -97,7 +97,9 @@ build_time_series_chart <- function(data, year, month) {
     e_datazoom(x_index = 0, type = "slider") %>% 
     e_axis_labels(x = 'Date', y = 'USD') %>% 
     e_y_axis(formatter = e_axis_formatter("currency")) %>% 
-    e_axis_pointer(label = list(show = FALSE))
+    e_axis_pointer(label = list(show = FALSE)) %>% 
+    e_toolbox_feature(feature = "saveAsImage", 
+                      excludeComponents = list("toolbox", "dataZoom"))
   
   return(chart)
 }

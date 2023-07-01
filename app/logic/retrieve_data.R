@@ -185,7 +185,8 @@ fetch_product_orders <- function() {
     mutate(OrderDate = as.Date(OrderDate, format = "%Y-%m-%d"), 
            Year = format(OrderDate, "%Y"), 
            Month_Number = month(OrderDate), 
-           New_Date = paste0(Year, "-", Month_Number, "-", "01"), 
+           New_Date = paste0(Year, "-", Month_Number, "-", "01") %>% 
+             as.Date(format = "%Y-%m-%d"), 
            ShippedDate = as.Date(ShippedDate, format = "%Y-%m-%d"))
   
   return(cleaned_data)

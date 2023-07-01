@@ -93,7 +93,7 @@ build_radar_chart <- function(data, year, employee) {
 build_modal <- function(modal_id) {
   modal(
     id = modal_id,
-    header = list(tags$h4(class = "modal-title", "Employee Performance")),
+    header = list(tags$h4(class = "modal-title", "Employee's Performance")),
     content = list(
       tags$h4(class = "modal-description-header", "Description"),
       tags$p(class = "modal-paragraph",

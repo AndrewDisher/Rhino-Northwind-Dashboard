@@ -7,6 +7,7 @@
 box::use(
   dplyr[`%>%`, filter, select],
   glue[glue],
+  htmlwidgets[JS],
   semantic.dashboard[column, icon],
   shiny[HTML, singleton, tags]
 )
@@ -37,9 +38,24 @@ get_month_choices <- function(data, year){
   return(months_choices)
 }
 
+# -------------------------
+# ----- create_button -----
+# -------------------------
+
+# DESCRIPTION: Generates an HTML button using raw HTML string.
+
+#' @export
+create_button <- function(id) {
+  glue('<button class="ui button custom" id="product_{id}" type="button" onclick= "App.getId(this.id)"><i class="chart line icon"></i></button>')
+}
+
 # -----------------------
 # ------ custom_box -----
 # -----------------------
+
+# DESCRIPTION: Creates a semantic.dashboard box that allows for html elements to be passed 
+#              to `title` argument. This differs from the base box function, which only
+#              allows for strings. 
 
 #' @export
 custom_box <- function(..., title = NULL, color = "", ribbon = TRUE, title_side = "top right",

@@ -17,7 +17,7 @@ box::use(
 
 box::use(
   app/logic[constants, retrieve_data, utilities],
-  app/view[tab_sales_overview, tab_sales_employees]
+  app/view[tab_product_inventory, tab_sales_overview, tab_sales_employees]
 )
 
 # -------------------------------------------------------------------------
@@ -109,7 +109,8 @@ ui <- function(id) {
     tabItems(
       tabItem(tabName = "salesOverview", tab_sales_overview$init_ui(id = ns("tab_sales_overview"))), 
       tabItem(tabName = "employees", tab_sales_employees$init_ui(id = ns("tab_sales_employees"))), 
-      tabItem(tabName = "productInventory")
+      useShinyjs(),
+      tabItem(tabName = "productInventory", tab_product_inventory$init_ui(id = ns("tab_product_inventory")))
     )
   )
   
@@ -182,5 +183,9 @@ server <- function(id) {
                                     employees = employees,
                                     year_selection = year_selection, 
                                     employee_name = employee_name)
+    
+    tab_product_inventory$init_server(id = "tab_product_inventory",
+                                      products_table = products_table,
+                                      product_orders = product_orders)
   })
 }

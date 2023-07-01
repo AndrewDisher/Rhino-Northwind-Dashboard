@@ -5,7 +5,8 @@
 box::use(
   dplyr[`%>%`],
   echarts4r[echarts4rOutput, renderEcharts4r],
-  shiny[moduleServer, NS, observeEvent, reactive, renderUI, tags, tagList, uiOutput],
+  shiny[moduleServer, NS, observeEvent, reactive, renderUI, tagList, uiOutput,
+        div, span],
   shiny.semantic[action_button, icon, show_modal],
   shinycssloaders[withSpinner]
 )
@@ -31,7 +32,7 @@ init_ui <- function(id) {
     
     # ----- Time Series Chart -----
     utilities$custom_box(width = 16,
-        title = tags$div(class = "label-container", tags$span(class = "title-span", "REVENUE OVER TIME"), 
+        title = div(class = "label-container", span(class = "title-span", "REVENUE OVER TIME"), 
                          action_button(input_id = ns("show"), label = "", icon = icon("info circle"), class = "help-icon")),
         ribbon = FALSE, 
         title_side = "top", 

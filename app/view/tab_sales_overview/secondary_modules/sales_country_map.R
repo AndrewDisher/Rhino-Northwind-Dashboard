@@ -5,7 +5,6 @@
 box::use(
   dplyr[`%>%`],
   echarts4r[echarts4rOutput, renderEcharts4r],
-  semantic.dashboard[icon],
   shiny[moduleServer, NS, observeEvent, reactive, renderUI, tags, tagList, uiOutput],
   shiny.semantic[action_button, icon, show_modal], 
   shinycssloaders[withSpinner]

@@ -40,7 +40,8 @@ init_ui <- function(id) {
                          id = ns("box-1"), 
                
                          # DT data table output
-                         dataTableOutput(outputId = ns("data_table")) %>% withSpinner(type = 8)
+                         dataTableOutput(outputId = ns("data_table")) %>%
+                           withSpinner(type = 8)
     )
   )
 }

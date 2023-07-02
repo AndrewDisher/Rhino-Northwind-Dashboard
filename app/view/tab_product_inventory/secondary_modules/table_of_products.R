@@ -8,7 +8,7 @@ box::use(
   echarts4r[echarts4rOutput, renderEcharts4r],
   shiny[moduleServer, NS, observeEvent, reactive, renderText, renderUI, req, 
         tagList, textOutput, uiOutput,
-        div, h2, p, span],
+        br, div, h2, h4, p, span],
   shinyjs[useShinyjs],
   shiny.semantic[action_button, create_modal, icon, modal, show_modal], 
   shinycssloaders[withSpinner]
@@ -19,7 +19,7 @@ box::use(
 # -------------------------------------------------------------------------
 
 box::use(
-  app/logic[table_of_products_logic, utilities]
+  app/logic[constants, table_of_products_logic, utilities]
 )
 
 # -------------------------------------------------------------------------
@@ -107,6 +107,28 @@ init_server <- function(id, products_table, product_orders) {
         table_of_products_logic$build_modal_time_series(data = modal_data()$time_series_data)
       })
       
+      # -----------------------------------------------------
+      # ----- Render Reactive Product Ranking for Modal -----
+      # -----------------------------------------------------
+      output$product_ranking <- renderUI({
+        req(input$button_id)
+        
+        span(style = paste0("color: ", constants$colors$secondary, ";", 
+                            "font-weight: bold;"), 
+             paste0("#", modal_data()$product_ranking))
+      })
+      
+      # --------------------------------------------------------------
+      # ----- Render Reactive Product Lifetime Revenue for Modal -----
+      # --------------------------------------------------------------
+      output$product_lifetime_revenue <- renderUI({
+        req(input$button_id)
+        
+        span(style = paste0("color: ", constants$colors$secondary, ";", 
+                            "font-weight: bold;"), 
+             modal_data()$product_lifetime_revenue)
+      })
+      
       # --------------------------------------------
       # ----- Build the Details Buttons' Modal -----
       # --------------------------------------------
@@ -116,8 +138,19 @@ init_server <- function(id, products_table, product_orders) {
           
           header = h2(class = "modal-title", textOutput(session$ns("modal_header"))),
           
-          content = list(p(class = "modal-paragraph", ""),
-                         echarts4rOutput(session$ns("modal_plot"))),
+          content = list(h4(class = "modal-description-header", "Sales History"),
+                         echarts4rOutput(session$ns("modal_plot")),
+                         br(),
+                         h4(class = "modal-description-header", "Ranking"), 
+                         p(class = "modal-paragraph", 
+                           "This product ranks as ",
+                           uiOutput(session$ns("product_ranking"), container = span),
+                           " among all other products in terms of the company lifetime revenue 
+                           it has generated, which totals", 
+                           uiOutput(session$ns("product_lifetime_revenue"), container = span),
+                           "."
+                           )
+                         ),
           
           footer = action_button(input_id = session$ns("dismiss_modal"),
                                 label = "Dismiss",

@@ -114,7 +114,10 @@ build_modal <- function(modal_id) {
                       this allows for convenient comparison of countries. Multiple labels can be 
                       created."), 
               tags$li(class = "modal-paragraph", "Zooming can help comparing countries whose labels
-                      overlap."))
+                      overlap."), 
+              tags$li(class = "modal-paragraph", "When saving as an image, the level of zoom
+                      and the labels you have attached (after clicking countries) will also be captured
+                      in the image. This is useful when you'd like to document a specific region."))
     ),
     footer = action_button(input_id = "dismiss_modal",
                            label = "Dismiss",

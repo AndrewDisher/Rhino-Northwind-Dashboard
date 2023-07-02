@@ -105,7 +105,7 @@ build_modal <- function(modal_id) {
                         tooltip shows the percentage of total company revenue for the period
                         that the category of products has contributed to. "), 
                 tags$li(class = "modal-paragraph", "The totoal revenue for the time period 
-                        can be seen in the top left value box.")
+                        can be seen in the value box labeled \" REVENUE\".")
         ))
     ), 
     footer = action_button(input_id = "dismiss_modal",

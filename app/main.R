@@ -56,7 +56,7 @@ ui <- function(id) {
                            selectInput(inputId = ns("yearSelection"),
                                        label = h5("Select a Year", align = "center"),
                                        choices = constants$years,
-                                       selected = "2018"))),
+                                       selected = "2017"))),
 
       # ----- Conditional Panel: Group 2 -----
       conditionalPanel(class = "conditional-panels",
@@ -98,7 +98,6 @@ ui <- function(id) {
                  href = "https://www.linkedin.com/in/andrew-disher-8b091b212/",
                  target = "_blank",
                  span(class = "author-img", "Created by Andrew D.")))
-      
     )
   )
   

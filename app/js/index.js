@@ -29,7 +29,10 @@ export function getId(clicked_id) {
 }
 
 // Format the tooltip for the product lead time bar chart
-export function formatLeadTimeTooltip(params) { 
-  return(params.marker + params.value[0] + ': ' + 
-  '<strong>' + params.value[1] + '</strong>' + ' days')
+export function formatLeadTimeTooltip(params) {
+  const overallAvg = +params.name;
+  const tooltip = params.marker + params.value[0] + ': ' + '<strong>' + params.value[1] + '</strong>' + ' days' + 
+  '<br />Overall Average: ' + '<strong>' + overallAvg + '</strong>' + ' days';
+  
+  return(tooltip)
 }

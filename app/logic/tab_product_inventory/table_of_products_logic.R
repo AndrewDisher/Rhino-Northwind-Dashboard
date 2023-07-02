@@ -3,10 +3,11 @@
 # -------------------------------------------------------------------------
 
 box::use(
-  dplyr[`%>%`, case_when, filter, group_by, mutate, row_number, select, summarize],
+  dplyr[`%>%`, arrange, case_when, desc, filter, group_by, mutate, row_number, select, summarize],
   DT[datatable],
   echarts4r[e_axis_formatter, e_axis_labels, e_axis_pointer, e_bar, e_charts, 
-            e_datazoom, e_loess, e_tooltip, e_tooltip_pointer_formatter, e_y_axis],
+            e_datazoom, e_loess, e_toolbox_feature, e_tooltip, e_tooltip_pointer_formatter, 
+            e_y_axis],
   shiny[tags],
   shiny.semantic[action_button, modal]
 )
@@ -49,15 +50,16 @@ prepare_table_data <- function(data) {
 
 #' @export
 build_data_table <- function(data) {
-  data %>% 
+  data_table <- data %>% 
     datatable(class = "cell-border stripe",
               selection = "single",
               extensions = c('Scroller'),
               escape = FALSE,
-              options = list(pageLength = 5, 
-                             scrollX = TRUE, 
+              options = list(scrollX = TRUE, 
                              scroller = TRUE, 
                              scrollY = 400))
+  
+  return(data_table)
 }
 
 # ----------------------------------------------------------------
@@ -72,7 +74,7 @@ filter_data_for_modal <- function(data, button_id) {
     as.numeric()
   
   # Filter data by product ID
-  cleaned_data <- data %>%
+  cleaned_data <- data %>% 
     filter(ProductID == product_id)
   
   # ----- Filtering for Time Series Data -----
@@ -87,9 +89,23 @@ filter_data_for_modal <- function(data, button_id) {
     unlist() %>%
     unique()
   
+  # ----- Acquire Ranking -----
+  product_stats <- data %>%
+    group_by(ProductID) %>% 
+    summarize(Revenue = sum(After_Discount)) %>%
+    arrange(desc(Revenue)) %>% 
+    mutate(Ranking = row_number()) %>%
+    filter(ProductID == product_id) %>% 
+    select(Revenue, Ranking) %>% 
+    mutate(Revenue = Revenue %>% 
+             formatC(big.mark = ", ", format = "f", digits = 0) %>% 
+             paste0("$", .))
+  
   # ---- Store Output Values in Named List -----
   return_list <- list(time_series_data = time_series_data, 
-                      product_name = product_name)
+                      product_name = product_name,
+                      product_lifetime_revenue = product_stats[[1]],
+                      product_ranking = product_stats[[2]])
   
   return(return_list)
 }
@@ -117,7 +133,9 @@ build_modal_time_series <- function(data) {
     e_axis_labels(x = 'Date', y = 'USD') %>% 
     e_y_axis(formatter = e_axis_formatter("currency")) %>% 
     e_datazoom(x_index = 0, type = "slider") %>% 
-    e_axis_pointer(label = list(show = FALSE))
+    e_axis_pointer(label = list(show = FALSE)) %>%
+    e_toolbox_feature(feature = "saveAsImage",
+                      excludeComponents = list("toolbox", "dataZoom"))
   
   return(chart)
 }

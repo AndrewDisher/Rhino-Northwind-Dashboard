@@ -6,8 +6,9 @@ box::use(
   shiny[conditionalPanel, moduleServer, NS, observe, reactive, renderUI, req, uiOutput, 
         a, br, div, h5, img, span],
   shinyjs[useShinyjs], 
-  semantic.dashboard[dashboardBody, dashboardHeader, dashboardPage, dashboardSidebar, menuItem, sidebarMenu, tabItem, tabItems],
-  shiny.semantic[icon, selectInput, updateSelectInput]
+  semantic.dashboard[dashboardBody, dashboardHeader, dashboardPage, dashboardSidebar, 
+                     menuItem, sidebarMenu, tabItem, tabItems],
+  shiny.semantic[action_button, icon, selectInput, updateSelectInput]
 )
 
 
@@ -17,7 +18,7 @@ box::use(
 
 box::use(
   app/logic[constants, retrieve_data, utilities],
-  app/view[tab_product_inventory, tab_sales_overview, tab_sales_employees]
+  app/view[main_info_modal, tab_product_inventory, tab_sales_overview, tab_sales_employees]
 )
 
 # -------------------------------------------------------------------------
@@ -34,8 +35,10 @@ ui <- function(id) {
   # ----- HEADER -----
   # ------------------
   header <- dashboardHeader(color = "blue", title = "Northwind Traders", 
-                            logo_path = "https://neo4j.com/docs/operations-manual/current/_images/fabric/northwind-logo.jpeg", 
-                            logo_align = "left", inverted = TRUE, titleWidth = "")
+                            #logo_path = "https://neo4j.com/docs/operations-manual/current/_images/fabric/northwind-logo.jpeg", 
+                            #logo_align = "left", 
+                            inverted = TRUE, titleWidth = "",
+                            right = main_info_modal$init_ui(id = ns("main_info_modal")))
   # -------------------
   # ----- SIDEBAR -----
   # -------------------
@@ -73,31 +76,7 @@ ui <- function(id) {
                            selectInput(inputId = ns("selectionEmployee"),
                                        label = h5("Select a Sales Employee", align = "center"),
                                        choices = retrieve_data$fetch_employees()$names,
-                                       selected = "Nancy Davolio"))),
-      
-      # ----- Author Links -----
-      div(id = "author-links",
-          a(id = "github-link",
-                 href = "https://github.com/AndrewDisher",
-                 target = "_blank",
-                 img(class = "author-img",
-                          src = "https://logos-download.com/wp-content/uploads/2016/09/GitHub_logo.png")),
-          div(style = "width: 10px;"),
-          a(id = "linkedIn-link",
-                 href = "https://www.linkedin.com/in/andrew-disher-8b091b212/",
-                 target = "_blank",
-                 img(class = "author-img",
-                          src = "https://pngimg.com/uploads/linkedIn/linkedIn_PNG16.png")),
-          div(style = "width: 15px;"),
-          a(id = "Northwind-link",
-                 href = "https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/northwind-install",
-                 target = "_blank",
-                 img(class = "author-img",
-                          src = "https://neo4j.com/docs/operations-manual/current/_images/fabric/northwind-logo.jpeg")),
-          a(id = "author-website-link",
-                 href = "https://www.linkedin.com/in/andrew-disher-8b091b212/",
-                 target = "_blank",
-                 span(class = "author-img", "Created by Andrew D.")))
+                                       selected = "Nancy Davolio")))
     )
   )
   
@@ -171,6 +150,8 @@ server <- function(id) {
     # ----------------------------------------------
     # ----- Initialize Module Server Functions -----
     # ----------------------------------------------
+    main_info_modal$init_server(id = "main_info_modal")
+    
     tab_sales_overview$init_server(id = "tab_sales_overview", 
                                    revenue_data = revenue_data, 
                                    revenue_data_by_category = revenue_data_by_category,

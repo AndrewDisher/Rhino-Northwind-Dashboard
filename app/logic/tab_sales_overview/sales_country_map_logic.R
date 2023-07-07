@@ -88,7 +88,7 @@ build_country_map <- function(data) {
                                           constants$colors$primary))) %>%
     e_tooltip(
       trigger = "item",
-      formatter = e_tooltip_choro_formatter(style = "currency", digits = 0),
+      formatter = JS("App.mapLabelFormatter"),
       borderWidth = 1,
       borderColor = constants$colors$primary, 
       extraCssText = "box-shadow: 0 3px 12px rgba(0,0,0,0.2);"

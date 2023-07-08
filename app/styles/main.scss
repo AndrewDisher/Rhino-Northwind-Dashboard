@@ -44,6 +44,24 @@ span.ui.menu.dashboard-title.thin.inverted.blue{
 /* ----- Styling for Application Info Modal ----- */
 /* ---------------------------------------------- */
 
+.technology-grid{
+  margin: 0 3em 0 3em;
+  align-items: center;
+  display: grid;
+  grid-template-areas: 
+  "left-description right-tech-used";
+  column-gap: .2em;
+}
+
+.left-description{
+  grid-area: left-description;
+}
+
+.right-tech-used{
+  grid-area: right-tech-used;
+  text-align: left;
+}
+
 .app-info-modal{
   border-radius: 1em;
   border: 1px solid #0d2e4c;
@@ -74,6 +92,8 @@ span.ui.menu.dashboard-title.thin.inverted.blue{
   border: 1px solid #0d2e4c;
   padding-right: 10px;
   padding-left: 10px;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 .tech-span:hover{

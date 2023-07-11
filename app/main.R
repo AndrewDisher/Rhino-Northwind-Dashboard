@@ -120,12 +120,24 @@ server <- function(id) {
     # ------------------------------------------
     # ----- (Not so) Reactive Data Queries -----
     # ------------------------------------------
-    revenue_data <- reactive({retrieve_data$fetch_revenue_data()})
-    revenue_data_by_category <- reactive({retrieve_data$fetch_revenue_data_by_category()})
-    employees <- reactive({retrieve_data$fetch_employees()$data})
-    employee_orders <- reactive({retrieve_data$fetch_employee_orders()})
-    products_table <- reactive({retrieve_data$fetch_products_table()})
-    product_orders <- reactive({retrieve_data$fetch_product_orders()})
+    revenue_data <- reactive({
+      retrieve_data$fetch_revenue_data()
+      })
+    revenue_data_by_category <- reactive({
+      retrieve_data$fetch_revenue_data_by_category()
+      })
+    employees <- reactive({
+      retrieve_data$fetch_employees()$data
+      })
+    employee_orders <- reactive({
+      retrieve_data$fetch_employee_orders()
+      })
+    products_table <- reactive({
+      retrieve_data$fetch_products_table()
+      })
+    product_orders <- reactive({
+      retrieve_data$fetch_product_orders()
+      })
     
     # -------------------------------------------
     # ----- UI Components and Their Updates -----
@@ -144,7 +156,8 @@ server <- function(id) {
       selected_year <- input$yearSelection
 
       updateSelectInput(session, "monthSelection",
-                        choices = utilities$get_month_choices(data = retrieve_data$fetch_revenue_data(), year = selected_year))
+                        choices = utilities$get_month_choices(data = revenue_data(), 
+                                                              year = selected_year))
     })
     
     # ----------------------------------------------

@@ -10,22 +10,14 @@ box::use(
   sf
 )
 
-# -------------------
-# ----- Modules -----
-# -------------------
-
-box::use(
-  app/logic[constants, retrieve_data]
-)
-
 # --------------------------------------------------------------
 # ----- Connect/disconnect to/from the local database file -----
 # --------------------------------------------------------------
 
-establish_con <- function() {
+establish_con <- function(path) {
   con <- dbConnect(
     drv = SQLite(), 
-    dbname = "data/northwind.db"
+    dbname = path
   )
   return(con)
 }
@@ -39,8 +31,8 @@ close_con <- function(con) {
 # --------------------------------------------------------
 
 #' @export
-fetch_revenue_data <- function() {
-  con <- establish_con()
+fetch_revenue_data <- function(file_path = "data/northwind.db") {
+  con <- establish_con(path = file_path)
   
   raw_data <- dbGetQuery(conn = con,
                          statement =
@@ -69,8 +61,8 @@ fetch_revenue_data <- function() {
 }
 
 #' @export
-fetch_revenue_data_by_category <- function() {
-  con <- establish_con()
+fetch_revenue_data_by_category <- function(file_path = "data/northwind.db") {
+  con <- establish_con(path = file_path)
   
   raw_data <- dbGetQuery(conn = con, 
                          statement = 
@@ -99,8 +91,8 @@ fetch_revenue_data_by_category <- function() {
 # ----------------------------------------------------------------
 
 #' @export
-fetch_employees <- function() {
-  con <- establish_con()
+fetch_employees <- function(file_path = "data/northwind.db") {
+  con <- establish_con(path = file_path)
   
   raw_data <- dbGetQuery(conn = con, 
                          statement = 
@@ -117,8 +109,8 @@ fetch_employees <- function() {
 }
 
 #' @export
-fetch_employee_orders <- function() {
-  con <- establish_con()
+fetch_employee_orders <- function(file_path = "data/northwind.db") {
+  con <- establish_con(path = file_path)
   
   raw_data <- dbGetQuery(conn = con, 
                          statement = 
@@ -148,8 +140,8 @@ fetch_employee_orders <- function() {
 # ------------------------------------------------------------
 
 #' @export
-fetch_products_table <- function() {
-  con <- establish_con()
+fetch_products_table <- function(file_path = "data/northwind.db") {
+  con <- establish_con(path = file_path)
   
   raw_data <- dbGetQuery(conn = con, 
                          statement = 
@@ -165,8 +157,8 @@ fetch_products_table <- function() {
 }
 
 #' @export
-fetch_product_orders <- function() {
-  con <- establish_con()
+fetch_product_orders <- function(file_path = "data/northwind.db") {
+  con <- establish_con(path = file_path)
   
   raw_data <- dbGetQuery(conn = con, 
                          statement = 

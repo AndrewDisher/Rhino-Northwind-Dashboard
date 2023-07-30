@@ -19,7 +19,7 @@ box::use(
 # ---------------------------------- Tests --------------------------------
 # -------------------------------------------------------------------------
 
-# File path for database (only needed for tests since rhino::test_r changes directory)
+# File path for database (only needed for tests since rhino::test_r changes working directory)
 DB_path <- "../../data/northwind.db"
 
 # --------------------------------

@@ -47,7 +47,9 @@ fetch_revenue_data <- function(file_path = "data/northwind.db") {
   close_con(con = con)
   
   cleaned_data <- raw_data %>%
-    mutate(OrderDate = as.Date(OrderDate, format = "%Y-%m-%d"), 
+    mutate(OrderDate = as.Date(OrderDate, format = "%Y-%m-%d"),
+           RequiredDate = as.Date(RequiredDate, format = "%Y-%m-%d"),
+           ShippedDate = as.Date(ShippedDate, format = "%Y-%m-%d"),
            Year = format(OrderDate, "%Y"), 
            Month = format(OrderDate, "%B"), 
            Month_Number = month(OrderDate), 

@@ -25,7 +25,8 @@ box::use(
 #' @export
 filter_data <- function(data, year, month) {
   # Always filter by year
-  cleaned_data <- data %>% filter(Year == year)
+  cleaned_data <- data %>% 
+    filter(Year == year)
   
   # Check to see if month equals 0 (implying 'All Months' is selected)
   if(month != 0) {
@@ -49,10 +50,12 @@ filter_data <- function(data, year, month) {
   
   # Create an column of integers, representing either days or months
   if(month != 0) {
-    cleaned_data <- cleaned_data %>% mutate(Days = 1:nrow(cleaned_data))
+    cleaned_data <- cleaned_data %>% 
+      mutate(Days = 1:nrow(cleaned_data))
   }
   else {
-    cleaned_data <- cleaned_data %>% mutate(Months = 1:nrow(cleaned_data))
+    cleaned_data <- cleaned_data %>% 
+      mutate(Months = 1:nrow(cleaned_data))
   }
   
   return(cleaned_data)

@@ -31,7 +31,7 @@ test_that("filter_data() returns correctly structured data", {
                                        "2019-03-01"),
                           Revenue = c(1:4))
   
-  # Expectation: Returns correct object classes for chart_data
+  # Expectation: Returns correct object classes
   expect_identical(employee_time_series_logic$filter_data(data = test_data,
                                                       year = "2019",
                                                       employee = "Boromir") %>% 

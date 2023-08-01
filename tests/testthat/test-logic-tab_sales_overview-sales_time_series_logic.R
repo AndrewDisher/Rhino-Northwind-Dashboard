@@ -31,28 +31,28 @@ test_that("filter_data() returns correctly structured data", {
                           New_Date = c("2016-01-01", "2016-12-01", "2016-12-01"),
                           After_Discount = c(3, 4, 5))
   
-  # Expectation: Returns correct object classes for chart_data
+  # Expectation: Returns correct object classes
   expect_identical(sales_time_series_logic$filter_data(data = test_data,
                                                        year = "2016",
                                                        month = 1) %>% 
                      class(),
                    c("tbl_df", "tbl", "data.frame"))
   
-  # Expectation: Returns correct number of columns for chart_data
+  # Expectation: Returns correct number of columns
   expect_equal(sales_time_series_logic$filter_data(data = test_data,
                                                    year = "2016",
                                                    month = 1) %>% 
                  ncol(),
                3)
   
-  # Expectation: Returns correct column names for chart_data when month is specified
+  # Expectation: Returns correct column names
   expect_identical(sales_time_series_logic$filter_data(data = test_data,
                                                        year = "2016",
                                                        month = 1) %>% 
                      colnames(),
                    c("OrderDate", "Total_Revenue", "Days"))
   
-  # Expectation: Returns correct column names for chart_data when NO month is specified
+  # Expectation: Returns correct column names when NO month is specified
   expect_identical(sales_time_series_logic$filter_data(data = test_data,
                                                        year = "2016",
                                                        month = 0) %>% 

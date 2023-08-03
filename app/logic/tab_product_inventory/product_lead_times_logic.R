@@ -35,7 +35,8 @@ format_data <- function(data) {
   
   # Calculate overall average
   cleaned_data <- cleaned_data %>% 
-    mutate(Overall_AVG =  (data$ShippedDate - data$OrderDate) %>% 
+    mutate(Overall_AVG =  (data$ShippedDate - data$OrderDate) %>%
+             as.numeric() %>% 
              mean(na.rm = TRUE) %>% 
              round(1))
   

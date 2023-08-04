@@ -1,7 +1,7 @@
 describe('app', () => {
   beforeEach(() => {
     cy.visit('/')
-  })
+  });
 
-  it('starts', () => {})
-})
+  it('starts', () => {});
+});

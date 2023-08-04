@@ -8,6 +8,7 @@ RUN apt-get update -qq && apt-get -y --no-install-recommends install \
     libcairo2-dev \
     libsqlite3-dev \
     libmariadbd-dev \
+    libmagick++-dev \
     libpq-dev \
     libssh2-1-dev \
     unixodbc-dev \
@@ -29,7 +30,7 @@ COPY --chown=shiny:shiny app.R ./
 COPY --chown=shiny:shiny config.yml ./
 COPY --chown=shiny:shiny rhino.yml ./
 COPY --chown=shiny:shiny app app/
-COPY --chown=shiny:shiny data/northwind.db ./
+COPY --chown=shiny:shiny data/northwind.db ./data/
 
 # expose port
 EXPOSE 3838

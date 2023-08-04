@@ -6,8 +6,7 @@ box::use(
   DBI[dbConnect, dbGetQuery, dbDisconnect],
   dplyr[...],
   lubridate[month],
-  RSQLite[SQLite],
-  sf
+  RSQLite[SQLite]
 )
 
 # --------------------------------------------------------------

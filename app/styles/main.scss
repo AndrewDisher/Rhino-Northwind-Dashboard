@@ -51,10 +51,12 @@ span.ui.menu.dashboard-title.thin.inverted.blue{
   grid-template-areas: 
   "left-description right-tech-used";
   column-gap: .2em;
+  grid-template-columns: 15% 85%;
 }
 
 .left-description{
   grid-area: left-description;
+  text-align: left;
 }
 
 .right-tech-used{
@@ -115,7 +117,7 @@ span.ui.menu.dashboard-title.thin.inverted.blue{
 
 .author-img{
   object-fit: cover;
-  width: 100%;
+  width: 75%;
   height: auto;
 }
 
@@ -360,7 +362,7 @@ span.ui.menu.dashboard-title.thin.inverted.blue{
 }
 
 .ui.modal {
-  width: 40% !important;
+  width: 60% !important;
 }
 
 .ui.modal>.actions {

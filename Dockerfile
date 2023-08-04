@@ -38,4 +38,4 @@ EXPOSE 3838
 USER shiny
 
 # run app on container start
-CMD ["R", "-e", "shiny::runApp('/app', host = '0.0.0.0', port = 3838)"]
+CMD ["R", "-e", "shiny::runApp('app.R', host = '0.0.0.0', port = 3838)"]

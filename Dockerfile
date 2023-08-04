@@ -29,7 +29,7 @@ COPY --chown=shiny:shiny app.R ./
 COPY --chown=shiny:shiny config.yml ./
 COPY --chown=shiny:shiny rhino.yml ./
 COPY --chown=shiny:shiny app app/
-COPY --chown=shiny:shiny data/northwind.db
+COPY --chown=shiny:shiny data/northwind.db ./
 
 # expose port
 EXPOSE 3838

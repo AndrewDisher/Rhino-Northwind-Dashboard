@@ -51,8 +51,8 @@ build_bar_chart <- function(data) {
     e_flip_coords() %>% 
     e_tooltip(formatter = htmlwidgets::JS("App.barChartTooltip")) %>% 
     e_axis_labels(y = 'Category', x = 'USD') %>% 
-    e_x_axis(formatter = e_axis_formatter("currency")) %>% 
-    e_grid(left = '15%', bottom = '8%') %>% 
+    e_x_axis(formatter = e_axis_formatter("currency")) %>%
+    e_grid(left = '23%', bottom = '8%') %>% 
     e_toolbox_feature(feature = "saveAsImage")
   
   return(chart)

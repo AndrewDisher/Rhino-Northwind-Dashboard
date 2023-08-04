@@ -75,7 +75,7 @@ build_time_series_chart <- function(data, year, month) {
             name = paste("Revenue", year, month.name[month %>% as.numeric()], sep = " "), 
             itemStyle = list(color = constants$colors$primary), 
             emphasis = list(itemStyle = list(color = constants$colors$secondary))) %>% 
-      e_loess(formula = Total_Revenue ~ Days, name = "Smoothed Trend Line", 
+      e_loess(formula = Total_Revenue ~ Days, name = "Trend Line", 
               itemStyle = list(color = constants$colors$secondary), 
               emphasis = list(itemStyle = list(color = constants$colors$turquoise, 
                                                borderColor = constants$colors$primary)))
@@ -86,7 +86,7 @@ build_time_series_chart <- function(data, year, month) {
       e_bar(serie = Total_Revenue, name = paste("Revenue", year, "All months", sep = " "), 
             itemStyle = list(color = constants$colors$primary), 
             emphasis = list(itemStyle = list(color = constants$colors$secondary))) %>% 
-      e_loess(formula = Total_Revenue ~ Months, name = "Smoothed Trend Line", 
+      e_loess(formula = Total_Revenue ~ Months, name = "Trend Line", 
               itemStyle = list(color = constants$colors$secondary), 
               emphasis = list(itemStyle = list(color = constants$colors$turquoise, 
                                                borderColor = constants$colors$primary)))

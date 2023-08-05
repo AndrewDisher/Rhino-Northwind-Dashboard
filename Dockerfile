@@ -26,6 +26,8 @@ RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get clean
 
+WORKDIR /srv/shiny-server/nw-app/
+
 # Install R dependencies
 COPY --chown=shiny:shiny .Rprofile renv.lock ./
 COPY --chown=shiny:shiny renv/activate.R renv/

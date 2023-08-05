@@ -7,7 +7,6 @@ library(semantic.dashboard)
 library(shiny)
 library(shinycssloaders)
 library(shinyjs)
-library(shiny.fluent)
 library(shiny.semantic)
 
 # Packages for SQLite database querying 
@@ -22,7 +21,6 @@ library(magick)
 # Packages for Data Manipulation
 library(dplyr)
 library(lubridate)
-library(purrr)
 library(tibble)
 library(tidyr)
 library(glue)

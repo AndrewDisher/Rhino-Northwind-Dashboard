@@ -1002,36 +1002,6 @@
         "xtable"
       ]
     },
-    "shiny.fluent": {
-      "Package": "shiny.fluent",
-      "Version": "0.3.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "588f81f264112d7c85f9b9e3c92ffc8d",
-      "Requirements": [
-        "htmltools",
-        "jsonlite",
-        "rlang",
-        "shiny",
-        "shiny.react"
-      ]
-    },
-    "shiny.react": {
-      "Package": "shiny.react",
-      "Version": "0.3.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "ef9e3966d3cd63ea006296bd7b7d4dcb",
-      "Requirements": [
-        "glue",
-        "htmltools",
-        "jsonlite",
-        "logger",
-        "purrr",
-        "rlang",
-        "shiny"
-      ]
-    },
     "shiny.semantic": {
       "Package": "shiny.semantic",
       "Version": "0.4.3",

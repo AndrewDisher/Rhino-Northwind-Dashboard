@@ -40,14 +40,11 @@ COPY --chown=shiny:shiny rhino.yml ./
 COPY --chown=shiny:shiny app app/
 COPY --chown=shiny:shiny data/northwind.db ./data/
 
-# expose port
-# EXPOSE 3838
 
 COPY --chown=shiny:shiny docker/shiny-server.conf /etc/shiny-server/
 USER shiny
 
 EXPOSE 3838
-CMD["/usr/bin/shiny-server.sh"]
 
 # run app on container start
 # CMD ["R", "-e", "shiny::runApp('app.R', host = '0.0.0.0', port = 3838)"]

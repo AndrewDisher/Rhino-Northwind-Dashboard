@@ -42,6 +42,9 @@ COPY --chown=shiny:shiny data/northwind.db ./data/
 
 
 COPY --chown=shiny:shiny docker/shiny-server.conf /etc/shiny-server/
+
+WORKDIR /srv/shiny-server/
+
 USER shiny
 
 EXPOSE 3838

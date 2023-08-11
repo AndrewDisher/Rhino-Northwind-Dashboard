@@ -8,9 +8,9 @@ The application was built using the Shiny package available in R alongside the [
 
 ## Docker
 
-The base image used in the Dockerfile is 
+The base image used in the Dockerfile is [rocker/shiny:4.3.0](https://github.com/rocker-org/rocker-versioned2/wiki/shiny_ec168d0acc04).
 
-A pre-built docker image can be found in this [DockerHub repository](https://hub.docker.com/repository/docker/adisher/rhino-shiny-nw-dashboard/general) for easy download.
+A pre-built docker image for this project can be found in this [DockerHub repository](https://hub.docker.com/repository/docker/adisher/rhino-shiny-nw-dashboard/general) for easy download.
 
 A Dockerfile is provided here in case you'd like to build the image locally. To do this, run in your terminal the command 
 

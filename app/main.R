@@ -35,8 +35,6 @@ ui <- function(id) {
   # ----- HEADER -----
   # ------------------
   header <- dashboardHeader(color = "blue", title = "Northwind Traders", 
-                            #logo_path = "https://neo4j.com/docs/operations-manual/current/_images/fabric/northwind-logo.jpeg", 
-                            #logo_align = "left", 
                             inverted = TRUE, titleWidth = "",
                             right = main_info_modal$init_ui(id = ns("main_info_modal")))
   # -------------------

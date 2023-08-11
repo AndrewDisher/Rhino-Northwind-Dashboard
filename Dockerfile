@@ -5,16 +5,7 @@ FROM rocker/shiny:4.3.0
 ## install debian packages
 RUN apt-get update -qq \
   && apt-get -y --no-install-recommends install \
-#    libxml2-dev \
-#    libcairo2-dev \
-#    libsqlite3-dev \
-#    libmariadbd-dev \
     libmagick++-dev \
-#    libpq-dev \
-#    libssh2-1-dev \
-#    unixodbc-dev \
-# libcurl4-openssl-dev \
-#    libssl-dev \
   && rm -rf /var/lib/apt/lists/*
     
 # Remove shiny-server example apps
@@ -47,9 +38,6 @@ WORKDIR /srv/shiny-server/
 
 USER shiny
 
-EXPOSE 3838
+# EXPOSE 3838
 
 CMD ["/usr/bin/shiny-server"]
-
-# run app on container start
-# CMD ["R", "-e", "shiny::runApp('app.R', host = '0.0.0.0', port = 3838)"]

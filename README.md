@@ -35,3 +35,7 @@ This project uses the [renv](https://rstudio.github.io/renv/articles/renv.html) 
 ## The Data
 
 The data used was the SQLite Implementation of the Northwind Traders database, found at [https://github.com/jpwhite3/northwind-SQLite3](https://github.com/jpwhite3/northwind-SQLite3).
+
+## Preview
+
+![Northwind App Gif](https://github.com/AndrewDisher/Rhino-Northwind-Dashboard/assets/67594486/db36b2b1-c1b4-44d9-9eb7-0697f21a2725)

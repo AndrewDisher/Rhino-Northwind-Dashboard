@@ -30,7 +30,7 @@ After doing so, the application should be available on your local machine at the
 
 ## Dependency Management
 
-This project uses the [renv](https://rstudio.github.io/renv/articles/renv.html) package to manage package dependencies for the app, so the Dockerfile is able to read and download these dependncies when building the Docker image. Base Linux dependencies are also addressed explicitly in the Dockerfile.
+This project uses the [renv](https://rstudio.github.io/renv/articles/renv.html) package to manage R package dependencies for the app, so the Dockerfile is able to read and download these dependncies when building the Docker image. Base Linux dependencies are also addressed explicitly in the Dockerfile.
 
 ## The Data
 

@@ -26,6 +26,8 @@ docker run -d --rm -p 3838:3838 adisher/rhino-shiny-nw-dashboard:v1
 
 Shiny natively uses port 3838 and [shiny-server](https://github.com/rstudio/shiny-server), the software used to manage the application, listens on port 3838. So you must include <code>3838:3838</code> in your docker run command. 
 
+After doing so, the application should be available on your local machine at the url <code>localhost:3838/nw-app</code>.
+
 ## The Data
 
 The data used was the SQLite Implementation of the Northwind Traders database, found at [https://github.com/jpwhite3/northwind-SQLite3](https://github.com/jpwhite3/northwind-SQLite3).

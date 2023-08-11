@@ -28,6 +28,10 @@ Shiny natively uses port 3838 and [shiny-server](https://github.com/rstudio/shin
 
 After doing so, the application should be available on your local machine at the url <code>localhost:3838/nw-app</code>.
 
+## Dependency Management
+
+This project uses the [renv](https://rstudio.github.io/renv/articles/renv.html) package to manage package dependencies for the app, so the Dockerfile is able to read and download these dependncies when building the Docker image. Base Linux dependencies are also addressed explicitly in the Dockerfile.
+
 ## The Data
 
 The data used was the SQLite Implementation of the Northwind Traders database, found at [https://github.com/jpwhite3/northwind-SQLite3](https://github.com/jpwhite3/northwind-SQLite3).

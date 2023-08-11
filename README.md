@@ -4,7 +4,7 @@ This repository contains the R, SCSS, JavaScript, data, and other files to gener
 
 ## R/Shiny and Rhino
 
-The application was built using the Shiny package available in R alongside the [Rhino](https://appsilon.github.io/rhino/) application development framework, developed by [Appsilon](https://appsilon.com/). I decided to use Rhino because of the easy implementation of SCSS and JavaScript the framework provides to seamlessly integrate web development features in R/Shiny. Also, it provides a good set up for testing code with various testing packages, like [testthat](https://testthat.r-lib.org/).
+The application was built using the Shiny package available in R alongside the [Rhino](https://appsilon.github.io/rhino/) application development framework, developed by [Appsilon](https://appsilon.com/). I decided to use Rhino because of the easy implementation of SCSS and JavaScript the framework provides to seamlessly integrate web development features in [R/Shiny](https://www.rstudio.com/products/shiny/). Also, it provides a good set up for testing code with various testing packages, like [testthat](https://testthat.r-lib.org/).
 
 ## Docker
 

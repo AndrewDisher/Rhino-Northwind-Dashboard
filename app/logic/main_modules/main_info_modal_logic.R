@@ -143,7 +143,7 @@ build_modal <- function(modal_id) {
             img(class = "author-img",
                 src = "https://pngimg.com/uploads/linkedIn/linkedIn_PNG16.png")),
           a(id = "author-website-link",
-            href = "https://www.linkedin.com/in/andrew-disher-8b091b212/",
+            href = "https://andrew-disher.netlify.app/",
             target = "_blank",
             img(class = "author-img",
                 src = "https://cdn.onlinewebfonts.com/svg/img_1489.png"))
